@@ -60,10 +60,7 @@ class RegistroAsesor_model extends CI_Model
         if ($referido == ''){
             $referido = NULL;
         }
-        //Validacion Codigo del Lider
-        if ($lider == ''){
-            $lider = NULL;
-        }
+        
 
 
     	$this->db->insert('tab_cliente', array('primer_nombre' => $pNombreAsesor,
@@ -175,6 +172,27 @@ class RegistroAsesor_model extends CI_Model
             'fk_id_cliente' => $idCliente));
 
         return true;
+    }
+
+    //Metodo para buscar quien es el super lider
+    function buscarIdSuperLider($mcaSuperLider){
+        $this->db->select('id_cliente');
+        $this->db->from('tab_cliente');
+        $this->db->where('super_lider', $mcaSuperLider);
+
+        $query = $this->db->get();
+        $ds = $query->row_array();
+
+        if (count($ds)>0){
+
+            $id_cliente = $ds['id_cliente'];
+        }
+        else{
+
+            $id_cliente = null;
+        }
+
+        return $id_cliente;
     }
 
 }

@@ -698,7 +698,7 @@
             }
 
             //Metodo para crear a los asesores
-            function registroAsesoresDeBelleza(){
+            function registroAsesoresDeBelleza(idSuperLider){
 
                     $.isLoading({
                            text: "Cargando",
@@ -706,6 +706,7 @@
                     });
 
                     //Mensajes de notioficacion
+                    var superLider = null;
                     var params = {                
                         onInit: function(data) {
                         },
@@ -718,6 +719,15 @@
                     params.heading = 'Notificación';
                     params.theme = 'teal';
                     params.life = '2000';
+                    
+                    //Valido si el Codigo del lider es nulo o no para asignar a la variable
+                    if ((getCodLider() == '') || (getCodLider() == null)){
+                        superLider = idSuperLider;
+                    }
+                    else{
+                        superLider = getCodLider();
+                    }
+
 
                     $.ajax({
                          type: 'POST',
@@ -728,7 +738,7 @@
                             fechaNacimientoAsesor:getFechaNaciomientoAsesor(), cedulaAsesor:getCedulaAsesor(), 
                             tlfFijoAsesor:getTlfFijoAsesor(), tlfCelularAsesor:getTlfCelularAsesor(), 
                             idProvincia:getProvincia(),idCiudad:getCiudad(), direccion:getDireccion(), 
-                            email:getEmailAsesor(), referido:getCodReferido(), lider:getCodLider(), 
+                            email:getEmailAsesor(), referido:getCodReferido(), lider:superLider, 
                             tipoContacto:getTipoContacto(), fechaActual:getFechaActual()},
                          url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/registroAsesoresDeBelleza',
                          success: function (data) 
@@ -933,7 +943,13 @@
                         $.isLoading("hide");
                         if (data == true){
                             if (validarCamposObligatorios()){
-                                registroAsesoresDeBelleza();
+                                if (getCodLider() == ''){
+                                    buscarIdSuperLider('S');
+                                }
+                                else{
+                                    registroAsesoresDeBelleza(null);
+                                }
+                                
                             }
                             
                             
@@ -977,7 +993,14 @@
                         }
                         else{
                             if (validarCamposObligatorios()){
-                                registroAsesoresDeBelleza();
+                                if (getCodLider() == ''){
+                                    buscarIdSuperLider('S');
+                                    
+                                }
+                                else{
+                                    registroAsesoresDeBelleza(null);
+                                }
+                                
                             }
                         }
                     }
@@ -994,7 +1017,12 @@
                         }
                         else{
                             if (validarCamposObligatorios()){
-                                registroAsesoresDeBelleza();
+                                if (getCodLider() == ''){
+                                    buscarIdSuperLider('S');
+                                }
+                                else{
+                                    registroAsesoresDeBelleza(null);
+                                }
                             }
                         }
 
@@ -1096,6 +1124,49 @@
                 }); 
             }
 
+            //Metodo para buscar quien es el super lider
+            function buscarIdSuperLider(mcaSuperLider){
+                                /* $.isLoading({
+                    text: "Cargando",
+                    position: "overlay"
+                });*/
+
+                var params = {                
+                    onInit: function(data) {
+                    },
+                    onCreate: function(notification, data) {
+                    },
+                    onClose: function(notification, data) {
+                    }
+                };
+
+                params.heading = 'Notificación';
+                params.theme = 'teal';
+                params.life = '2000';
+
+                $.ajax({
+                    type: 'POST',
+                    async:false,
+                    dataType: 'json',
+                    data: {mcaSuperLider:mcaSuperLider},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/buscarIdSuperLider',
+                    success: function (data) 
+                    {     
+                        $.isLoading("hide");
+                        if ((data != '') && (data != null) && (data != undefined)){
+                            registroAsesoresDeBelleza(data);
+                        }
+                        else{
+                            var text = 'Se presento un problema al registrar al asesor';
+                            $.notific8(text, params);
+                            $('#modalregistroAsesoraB').modal('hide');
+                        }
+                       
+                        
+                    }
+                });
+            }
+
 
             //Carga de pantalla
             window.onload = function alcargar()
@@ -1121,7 +1192,7 @@
                     }
                 });
                 //Telefono
-                $('#rtipContactoMail').click(function(){
+                $('#rtipContactoTlf').click(function(){
                     if ($('#rtipContactoTlf').is(':checked')){
                         setTipoContacto(2);
                     }
@@ -1146,7 +1217,7 @@
                             event.preventDefault();
                         }          
                     }
-                });
+                });*/
                 $('#itlfCelular').keypress(function(key) {
                     if(key.charCode < 48 || key.charCode > 57) return false;
                 });

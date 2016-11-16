@@ -106,5 +106,12 @@ class RegistroAsesor extends MX_Controller
         $datos = $this->load->registroAsesor_model->ingresarTablaReferidos($cedulaAsesor,$fechaActual,$idCliente);
         echo json_encode($datos);
     }
+
+    //Metodo para buscar quien es el super lider
+    function buscarIdSuperLider(){
+        $mcaSuperLider = trim($this->input->post('mcaSuperLider'));
+        $datos = $this->load->registroAsesor_model->buscarIdSuperLider($mcaSuperLider);
+        echo json_encode($datos);
+    }
 }
 ?>
