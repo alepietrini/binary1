@@ -1,0 +1,617 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"al",
+				"align"
+			],
+			[
+				"resul",
+				"result_array"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"bord",
+				"border-collapse"
+			],
+			[
+				"border-",
+				"border-style"
+			],
+			[
+				"background-",
+				"background-color"
+			],
+			[
+				"h",
+				"h1\tTag"
+			],
+			[
+				"he",
+				"header\tTag"
+			],
+			[
+				"pro",
+				"promedio_nuevo"
+			],
+			[
+				"to",
+				"toFixed"
+			],
+			[
+				"lo",
+				"load"
+			],
+			[
+				"ob",
+				"objeto1"
+			],
+			[
+				"div",
+				"div_generales"
+			],
+			[
+				"c",
+				"color"
+			],
+			[
+				"parse",
+				"parseFloat"
+			],
+			[
+				"promedio_",
+				"promedio_total"
+			],
+			[
+				"nuevo",
+				"nuevo_valor"
+			],
+			[
+				"promed",
+				"promedio_general"
+			],
+			[
+				"EST",
+				"ESTADO_CALIFICACION"
+			],
+			[
+				"asis",
+				"asistencia"
+			],
+			[
+				"asi",
+				"asistencia"
+			],
+			[
+				"asistencia",
+				"asistencia_"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"tr",
+				"trim"
+			],
+			[
+				"TR",
+				"trim"
+			],
+			[
+				"entra",
+				"entradaNumero"
+			],
+			[
+				"sel",
+				"selector"
+			],
+			[
+				"s",
+				"select"
+			],
+			[
+				"ran",
+				"range"
+			],
+			[
+				"ty",
+				"type"
+			],
+			[
+				"sup",
+				"supletorio"
+			],
+			[
+				"H",
+				"HTML"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"promedio",
+				"promedio_nuevo"
+			],
+			[
+				"cal",
+				"calificaciones"
+			],
+			[
+				"fo",
+				"for\tfor (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"for",
+				"for\tfor (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"cali",
+				"calificacion"
+			],
+			[
+				"ca",
+				"calificacion"
+			],
+			[
+				"id_tipo",
+				"ID_TIPO_CALIFICACION"
+			],
+			[
+				"valor",
+				"valor_supletorio"
+			],
+			[
+				"academico",
+				"academico_model"
+			],
+			[
+				"base",
+				"base_url"
+			],
+			[
+				"Po",
+				"POST"
+			],
+			[
+				"ide_",
+				"id_cliente"
+			],
+			[
+				"ID_PRIOD",
+				"ID_PERIODO_ACADEMICO"
+			],
+			[
+				"ID_PER",
+				"ID_PERSONA"
+			],
+			[
+				"id",
+				"id_persona"
+			],
+			[
+				"FECHA_",
+				"FECHA_INGRESO"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 58.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/lendan_matricula_25/application/config/database.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/facturacion/models/Servicios_model.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/automatica/models/Automatica_model.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/academico/models/Academico_model.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/academico/views/matricula.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/automatica/views/edicionFacturasAutomatico.php",
+		"/C/xampp/htdocs/lendan_matricula_25/application/modules/automatica/controllers/Automatica.php",
+		"/C/xampp/htdocs/lendan_matricula1/application/modules/facturacion/models/Facturacion_model.php",
+		"/C/xampp/htdocs/lendan_matricula1/application/modules/facturacion/models/Rubros_model.php",
+		"/C/xampp/htdocs/lendans1/application/config/database.php",
+		"/C/xampp/htdocs/lendan6/application/views/templates/header.php",
+		"/C/xampp/htdocs/lendan6/application/controllers/Index.php",
+		"/C/xampp/htdocs/lendan6/application/config/database.php",
+		"/C/xampp/htdocs/lendan6/application/views/index/index.php",
+		"/G/lendan1/application/modules/academico/models/Academico_model.php",
+		"/C/xampp/htdocs/lendan_a_secas/application/config/database.php",
+		"/G/lendan1/application/modules/academico/controllers/Academico.php",
+		"/C/xampp/htdocs/lendan_usuarios_FINAL/application/config/database.php",
+		"/C/xampp/htdocs/lendan_usuarios_FINAL/application/modules/academico/views/docente_grupo_de_estudiantes_calificar.php",
+		"/C/xampp/htdocs/lendan_usuarios_FINAL/application/modules/academico/models/Academico_model.php",
+		"/C/xampp/htdocs/lendan_usuarios_FINAL/application/modules/academico/controllers/Academico.php",
+		"/C/xampp/htdocs/lendan_usuarios_cambios/application/modules/academico/views/docente_grupo_de_estudiantes_calificar.php",
+		"/C/xampp/htdocs/lendan_usuarios/application/modules/academico/controllers/Academico.php",
+		"/C/xampp/htdocs/lendan_calificaciones/application/modules/academico/views/docente_grupo_de_estudiantes_calificar.php",
+		"/C/xampp/htdocs/lendan_calificaciones/application/modules/academico/views/crearMateria.php",
+		"/C/xampp/htdocs/lendancambios/application/config/database.php",
+		"/C/xampp/htdocs/LENDIS/lendan/application/modules/academico/views/busqueda_para_convalidar_homologar.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/facturacion/views/busquedaAvanzadaFactura.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/facturacion/models/Rubros_model.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/facturacion/controllers/Facturacion.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/config/database.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/views/cierreCaja.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/views/cajaCerrada.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/academico/views/docente_grupo_de_estudiantes_calificar.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/academico/views/busqueda_para_convalidar_homologar.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/academico/views/busqueda_para_inscribir.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/academico/views/busqueda_para_matricular.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/academico/views/busqueda_docente_para_calificar.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/automatica/models/Automatica_model.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/facturacion/models/Facturacion_model.php",
+		"/C/xampp/htdocs/lendan_ultimos_cambios/application/modules/facturacion/models/Servicios_model.php",
+		"/C/xampp/htdocs/lendan/application/config/database.php",
+		"/D/Trabajo/lendancambios/application/modules/academico/views/docente_grupo_de_estudiantes_calificar.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/academico/views/inscripcion.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/automatica/models/Automatica_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/academico/models/Academico_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Servicios_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/academico/views/busqueda_para_inscribir.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/academico/controllers/Academico.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/automatica/controllers/Automatica.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Formas_pago_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/clientes/models/Clientes_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Parametros_facturacion_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Retenciones_impuesto_renta_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Retenciones_iva_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/models/Facturacion_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/automatica/views/edicionFacturasAutomatico.php",
+		"/C/Users/Juan/Desktop/audit/application/controllers/welcome.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/models/Usuarios_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/controllers/Usuario.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/controllers/Login.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/controllers/Rol.php",
+		"/C/xampp/htdocs/lendan_produccion/application/libraries/Audit.php",
+		"/C/Users/Juan/Desktop/audit/application/libraries/Audit.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/models/Audit_model.php",
+		"/C/Users/Juan/Desktop/audit/application/models/audit_model.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/admin/views/login.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/clientes/controllers/Clientes.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/controllers/Facturacion.php",
+		"/C/xampp/htdocs/lendan_1/application/config/database.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/facturacion/views/resultadoBusquedaCajas.php",
+		"/F/lendan_base/application/modules/facturacion/controllers/Facturacion.php",
+		"/F/lendan/application/modules/facturacion/views/cierreCaja.php",
+		"/F/RESPALDO WAMMP/www/lendan_produccion/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan_produccion/application/modules/clientes/controllers/Clientes.php",
+		"/F/RESPALDO WAMMP/www/lendan_base/application/modules/clientes/controllers/Clientes.php",
+		"/F/RESPALDO WAMMP/www/lendan/application/modules/clientes/controllers/Clientes.php",
+		"/F/lendan_base/application/modules/facturacion/views/cierreCaja.php",
+		"/F/lendan/application/modules/facturacion/controllers/Facturacion.php",
+		"/F/lendan_base/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/lendan/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/www/lendan/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan - copia/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan_1/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan_2/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendan_base/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/RESPALDO WAMMP/www/lendanR/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/lendancambios/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/F/lendan18082016/lendan/application/modules/clientes/views/creacionAvanzadaPN.php",
+		"/C/xampp/htdocs/lendan_produccion/application/modules/clientes/views/busquedaAvanzada.php",
+		"/C/xampp/htdocs/test/application/config/database.php",
+		"/C/xampp/htdocs/lendan_produccion/application/config/database.php"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"calcular_y_a",
+			"calcular_y_actualizar_cuotas_generales",
+			"Clientes",
+			"Asosciar",
+			"gestionar_amortizacion",
+			"facturar_rubros",
+			"Facturar",
+			"gestionar_amortizacion",
+			"facturar_rubros",
+			"Facturar",
+			"guardar_tabla_amortizacion",
+			"genera",
+			"insert_id",
+			"generar_nuevas_cuotas",
+			"buscarCuotasEnQSeCobra",
+			"buscarDatosRubro",
+			"obtener_rubros",
+			"buscarDatosRubro",
+			"precio",
+			"generar_nuevas_cuotas",
+			"asociarRubrosAClientes",
+			"crearActualizarInscripcion",
+			"verificar_si_se_termino_de_pagar_cuota_general",
+			"verificar_si_se_termino_de_pagar_cuotas_generales",
+			"asociarRubrosAClientes",
+			"obtener_rubros",
+			"crearActualizarInscripcion",
+			"get_periodo_activado",
+			"arreglo_cuotas",
+			"calcular_y_actualizar_cuotas_generales",
+			"asociarRubrosAClientes",
+			"matricula",
+			"crearActualizarMatricula",
+			"get_datos_matricula",
+			"obtener_datos_inscripcion",
+			"get_datos_matricula",
+			"SELECCIONE CARRERA",
+			"obtener_datos_inscripcion",
+			"obtener_datos_matricula",
+			"MATRICULA",
+			"buscarEstudiantesInscritos",
+			"buscar_grupo_de_estdiantes_calificar",
+			"buscarEstudiantes",
+			"s_modalida",
+			"get_periodos_academicos",
+			"get_modalidades",
+			"get_niveles",
+			"supletorio",
+			"juanchi",
+			"updateAsistenciaSupletorioNotaFinal",
+			"asistenciaSupletorioPromedio",
+			"/3",
+			"promedio_total",
+			"updateAsistenciaSupletorioNotaFinal",
+			"asistenciaSupletorioPromedio",
+			"updateAsistenciaSupletorioNotaFinal",
+			"asistenciaSupletorioPromedio",
+			"buscar_grupo_de_estdiantes_calificar",
+			"asistencia_",
+			"formulario_materia_guardar",
+			"btn",
+			"docente_grupo",
+			"btn",
+			"asistenciaSupletorioPromedio",
+			"updateHermano",
+			"updateCalficaciones",
+			"mostrarFormulario",
+			"mostrar",
+			"obtener_datos_rol",
+			"updateAs",
+			"buscar_grupo_de_estdiantes_calificar",
+			"asistenciabuscar_grupo_de_estdiantes_calificar",
+			"asistencia",
+			"id_persona_docente",
+			"updateAsistenciaSupletorioNotaFinal",
+			"asistenciaSupletorioPromedio",
+			"updateAsistenciaSupletorio",
+			"updateAsisten",
+			"updateAsistenciaSupletorioNotaFinal",
+			"asistenciaSupletorioPromedio",
+			"buscar_grupo_de_estdiantes_calificar",
+			"updateAs",
+			"div_generales",
+			"updateAsistencia",
+			"estado",
+			"updateAsistenciaSupletorio",
+			"generales",
+			"updateAsistenciaSupletorio(",
+			"imprimir",
+			"imprime",
+			"updateAsistenciaSupletorio",
+			"opcion",
+			"guardar",
+			"ID_ESTUDIANTE_CARRERA_MATERIA",
+			"imp",
+			"btnopcion",
+			"imprimir",
+			"SUPLETORIO",
+			"Imprimir",
+			"buscar_grupo_de_estdiantes_calificar",
+			"Asistencia",
+			"modal_apertura_caja",
+			"cerrar_caja",
+			"validacionAsitencia_Supletorio",
+			"supletorio",
+			"updateCalficaciones",
+			"btn-primary ",
+			"btn-primary btn btn-sm\"",
+			"entradaNumero",
+			"updateCalficaciones",
+			"asistencia",
+			"buscar_grupo_de_estdiantes_calificar",
+			"buscar",
+			"busqueda_grupo",
+			"busqueda_docente_para_calificar",
+			"buscarparametro",
+			"});\n",
+			"estado",
+			"asistencia",
+			"periodo",
+			"buscar_grupo_de_estdiantes_calificar",
+			"buscar_grupo_de_estud",
+			"buscar_de_estud",
+			"ASSITENCIA",
+			"getparametro",
+			"validacionAsitencia_Supletorio",
+			"buscar_grupo_de_estdiantes_calificar",
+			"FINAL"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "license.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 357.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
