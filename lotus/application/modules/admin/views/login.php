@@ -255,6 +255,18 @@
                                     <tr>
                                         <td></td>
                                         <td>
+                                            <label class="control-label required" for="for_TipDocumentoAsesor">Tipo de Documento <span class="required"> * </span></label>
+                                        </td>
+                                        <td>
+                                            <select id="stipoDocumento" class="form-control">
+                                                <option value="">-Seleccionar-</option>
+                                            </select>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
                                             <label class="control-label required" for="for_CedulaAsesor">Cédula <span class="required"> * </span></label>
                                         </td>
                                         <td>
@@ -509,6 +521,12 @@
             function setIdCliente(valor){
                 id_cliente = valor;
             }
+
+            //Tipo de Documento
+            function getTipoDocumento(){
+                return $("#stipoDocumento option:selected" ).val();
+            }
+
             //
             $(function(){            
             var params = {
@@ -548,7 +566,7 @@
                         }
                         $("#enviar").click(chequearValidacionYEnviarFormulario);
                     
-            });
+                });
 
 
             function mostrarLogoMini()
@@ -603,7 +621,8 @@
                 $("#rtipContactoMail").prop("checked", false);
                 $("#rtipContactoTlf").prop("checked", false);
 
-                obtenerRoles();
+                obtenerTipoDocumentos();
+                
 
             }
 
@@ -613,10 +632,10 @@
                    //
                 /*var url = "<?php echo base_url(); ?>index.php/cliente/registroAsesor/registroAsesoraBelleza";
                 window.open(url ,'_self');*/
-                  $.isLoading({
+                  /*$.isLoading({
                            text: "Cargando",
                            position: "overlay"
-                          });
+                          });*/
 
                   $.ajax({
                          type: 'POST',
@@ -670,10 +689,10 @@
 
             //Metodo para obtener las ciudades
             function obtenerRoles(){
-                    $.isLoading({
+                    /*$.isLoading({
                            text: "Cargando",
                            position: "overlay"
-                    });
+                    });*/
 
                     $.ajax({
                          type: 'POST',
@@ -683,7 +702,7 @@
                          url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/obtenerRoles',
                          success: function (data) 
                          {     
-                            $.isLoading("hide");
+                            //$.isLoading("hide");
                            /* $.each(data, function(i, reg){
                                 $('#sRol').append($('<option>', {
                                     value: data[i].id_rol,
@@ -735,7 +754,8 @@
                          dataType: 'json',
                          data: {pNombreAsesor:getpNombreAsesor(), sNombreAsesor:getsNombreAsesor(), 
                             apellidoPAsesor:getApellidoP(), apellidoMAsesor:getApellidoM(), 
-                            fechaNacimientoAsesor:getFechaNaciomientoAsesor(), cedulaAsesor:getCedulaAsesor(), 
+                            fechaNacimientoAsesor:getFechaNaciomientoAsesor(), 
+                            tipoDocumento:getTipoDocumento(),cedulaAsesor:getCedulaAsesor(), 
                             tlfFijoAsesor:getTlfFijoAsesor(), tlfCelularAsesor:getTlfCelularAsesor(), 
                             idProvincia:getProvincia(),idCiudad:getCiudad(), direccion:getDireccion(), 
                             email:getEmailAsesor(), referido:getCodReferido(), lider:superLider, 
@@ -743,11 +763,12 @@
                          url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/registroAsesoresDeBelleza',
                          success: function (data) 
                          {     
-                           // $.isLoading("hide");
+                           $.isLoading("hide");
                             if (data == true){
                                 buscarIdCliente();
                             }
                             else{
+                                
                                 var text = 'Se presento un problema al registrar al asesor';
                                  // show notification
                                 $.notific8(text, params);
@@ -781,7 +802,7 @@
                 params.life = '2000';
 
                 if ((getpNombreAsesor() == '') || (getApellidoP() == '') || (getFechaNaciomientoAsesor() == '') ||
-                    (getCedulaAsesor() == '') || (getTlfCelularAsesor() == '') ||
+                    (getTipoDocumento() == '') || (getCedulaAsesor() == '') || (getTlfCelularAsesor() == '') ||
                     (getProvincia() == '') || (getCiudad() == '') || (getDireccion() == '') || 
                     (getTipoContacto() == '')){
 
@@ -955,6 +976,7 @@
                             
                         }
                         else{
+                            
                             var text = 'El Código del Lider no existe';
                             $.notific8(text, params);
                         }
@@ -1040,10 +1062,10 @@
             //Buscar Id de Cliente para inyectar en la tabla de referidos
             function buscarIdCliente(){
 
-               /* $.isLoading({
+                $.isLoading({
                     text: "Cargando",
                     position: "overlay"
-                });*/
+                });
 
                 var params = {                
                     onInit: function(data) {
@@ -1066,12 +1088,13 @@
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/buscarIdCliente',
                     success: function (data) 
                     {     
-                        //$.isLoading("hide");
+                        $.isLoading("hide");
                         if ((data != null) && (data != undefined) && (data != '')){
                             setIdCliente(data);
                             ingresarTablaReferidos(data);
                         } 
                         else{
+                            //$.isLoading("hide");
                             var text = 'Se presento un problema al registrar al asesor';
                             $.notific8(text, params);
                         }
@@ -1083,10 +1106,10 @@
             //Metodo para ingresar en la tabla tab_referido
             function ingresarTablaReferidos(idCliente){
 
-                /* $.isLoading({
+                 $.isLoading({
                     text: "Cargando",
                     position: "overlay"
-                });*/
+                });
 
                 var params = {                
                     onInit: function(data) {
@@ -1111,14 +1134,17 @@
                     {     
                         $.isLoading("hide");
                         if (data == true){
-                            var text = 'Asesor Registrado correctamente';
+                            crearCredencialesVendedor();
+                            //var text = 'Asesor Registrado correctamente';
                         }
                         else{
+                            
                             var text = 'Se presento un problema al registrar al asesor';
                             // show notification
+                            $.notific8(text, params);
+                            $('#modalregistroAsesoraB').modal('hide');
                         }
-                        $.notific8(text, params);
-                        $('#modalregistroAsesoraB').modal('hide');
+                        
                         
                     }
                 }); 
@@ -1126,10 +1152,11 @@
 
             //Metodo para buscar quien es el super lider
             function buscarIdSuperLider(mcaSuperLider){
-                                /* $.isLoading({
+                
+                 $.isLoading({
                     text: "Cargando",
                     position: "overlay"
-                });*/
+                });
 
                 var params = {                
                     onInit: function(data) {
@@ -1152,15 +1179,126 @@
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/buscarIdSuperLider',
                     success: function (data) 
                     {     
-                        $.isLoading("hide");
+                       $.isLoading("hide");
                         if ((data != '') && (data != null) && (data != undefined)){
                             registroAsesoresDeBelleza(data);
                         }
                         else{
+                            
                             var text = 'Se presento un problema al registrar al asesor';
                             $.notific8(text, params);
                             $('#modalregistroAsesoraB').modal('hide');
                         }
+                       
+                        
+                    }
+                });
+            }
+
+            //Metodo para la creacion de credenciales {
+            function crearCredencialesVendedor(){
+
+                 $.isLoading({
+                    text: "Cargando",
+                    position: "overlay"
+                });
+                var nombreCompleto = null;
+                //Codicionamiento
+                if ((getsNombreAsesor() != '') && getApellidoM() != ''){
+                    nombreCompleto = getpNombreAsesor()+' '+getsNombreAsesor()+' '+getApellidoP()+' '
+                    +getApellidoM();
+                }
+                else if ((getsNombreAsesor() != '') && (getApellidoM() == '')){
+                    nombreCompleto = getpNombreAsesor()+' '+getsNombreAsesor()+' '+getApellidoP();
+                }
+                else if ((getsNombreAsesor() == '') && (getApellidoM() != '')){
+                    nombreCompleto = getpNombreAsesor()+' '+getApellidoP()+' '+getApellidoM();
+                }
+                else if ((getsNombreAsesor() == '') && (getApellidoM() == '')){
+                    nombreCompleto = getpNombreAsesor()+' '+getApellidoP();
+                }
+
+                var params = {                
+                    onInit: function(data) {
+                    },
+                    onCreate: function(notification, data) {
+                    },
+                    onClose: function(notification, data) {
+                    }
+                };
+
+                params.heading = 'Notificación';
+                params.theme = 'teal';
+                params.life = '2000';
+
+                $.ajax({
+                    type: 'POST',
+                    async:false,
+                    dataType: 'json',
+                    data: {cedulaAsesor:getCedulaAsesor(),idCliente:getIdCliente(), 
+                        nombreCompleto:nombreCompleto},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/crearCredencialesVendedor',
+                    success: function (data) 
+                    {     
+                        $.isLoading("hide");
+                       if (data == true){
+                            var text = 'Asesor Registrado correctamente';
+                       }
+                       else
+                       {
+                            var text = 'Se presento un problema al registrar al asesor';
+                       }
+
+                       $.notific8(text, params);
+                       $('#modalregistroAsesoraB').modal('hide');
+                        
+                    }
+                });
+            }
+
+            //Metodo para cargar los tipos de documentos
+            function obtenerTipoDocumentos(){
+                $.isLoading({
+                    text: "Cargando",
+                    position: "overlay"
+                });
+
+                var params = {                
+                    onInit: function(data) {
+                    },
+                    onCreate: function(notification, data) {
+                    },
+                    onClose: function(notification, data) {
+                    }
+                };
+
+                params.heading = 'Notificación';
+                params.theme = 'teal';
+                params.life = '2000';
+
+                //                            
+                $('#stipoDocumento').append($('<option>', {
+                    value: '',
+                    text: '-Seleccionar-'
+                }));
+
+                $.ajax({
+                    type: 'POST',
+                    async:false,
+                    dataType: 'json',
+                    data: {},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/obtenerTipoDocumentos',
+                    success: function (data) 
+                    {     
+                        //$.isLoading("hide");
+                        $.each(data, function(i, reg){
+                            $('#stipoDocumento').append($('<option>', {
+                                value: data[i].id_tipo_documento,
+                                text: data[i].nombre_tipo_documento
+                            }));
+                        })
+
+                        obtenerRoles();
                        
                         
                     }

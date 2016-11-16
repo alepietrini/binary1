@@ -24,12 +24,10 @@ class Index extends CI_Controller {
             $idusuario=$this->session->userdata('loggeado')['ID_USUARIO'];
             $usuario=$this->session->userdata('loggeado')['USUARIO'];
 
-
-
-        $datos1=$this->rol_model->cabecera();
-        $this->load->view('templates/header', $datos1);
-        $this->load->view('cliente/formularioRegistroCliente');
-        $this->load->view('templates/footer');
+            $datos1=$this->rol_model->cabecera($idusuario);
+            $this->load->view('templates/header', $datos1);
+            $this->load->view('cliente/formularioRegistroCliente');
+            $this->load->view('templates/footer');
 
         }
 

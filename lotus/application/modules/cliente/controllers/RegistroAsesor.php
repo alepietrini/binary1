@@ -45,7 +45,7 @@ class RegistroAsesor extends MX_Controller
     }
 
     //Metodo para validar la cedula
-    function validarCedulaAsesor(){
+    public function validarCedulaAsesor(){
 
         $cedulaAsesor= trim($this->input->post('cedulaAsesor'));
         $datos = $this->load->registroAsesor_model->validarCedulaAsesor($cedulaAsesor);
@@ -61,6 +61,7 @@ class RegistroAsesor extends MX_Controller
         $apellidoPAsesor=trim($this->input->post('apellidoPAsesor'));
         $apellidoMAsesor=trim($this->input->post('apellidoMAsesor'));
         $fechaNacimientoAsesor=trim($this->input->post('fechaNacimientoAsesor'));
+        $tipoDocumento=trim($this->input->post('tipoDocumento'));
         $cedulaAsesor=trim($this->input->post('cedulaAsesor'));
         $tlfFijoAsesor=trim($this->input->post('tlfFijoAsesor'));
         $tlfCelularAsesor=trim($this->input->post('tlfCelularAsesor'));
@@ -73,7 +74,7 @@ class RegistroAsesor extends MX_Controller
         $tipoContacto=trim($this->input->post('tipoContacto'));
         $fechaActual=trim($this->input->post('fechaActual'));
 
-        $datos = $this->registroAsesor_model->registroAsesoresBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,$fechaNacimientoAsesor,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad, $direccion, $email,$referido,$lider, $tipoContacto, $fechaActual);
+        $datos = $this->registroAsesor_model->registroAsesoresDeBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,$fechaNacimientoAsesor,$tipoDocumento,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad, $direccion, $email,$referido,$lider, $tipoContacto, $fechaActual);
         echo json_encode($datos);
     }
 
@@ -108,9 +109,25 @@ class RegistroAsesor extends MX_Controller
     }
 
     //Metodo para buscar quien es el super lider
-    function buscarIdSuperLider(){
+    public function buscarIdSuperLider(){
         $mcaSuperLider = trim($this->input->post('mcaSuperLider'));
         $datos = $this->load->registroAsesor_model->buscarIdSuperLider($mcaSuperLider);
+        echo json_encode($datos);
+    }
+
+    //Metodo para la creacion de credenciales para los vendedores
+    public function crearCredencialesVendedor(){
+        $cedulaAsesor = trim($this->input->post('cedulaAsesor'));
+        $idCliente = trim($this->input->post('idCliente'));
+        $nombreCompleto = trim($this->input->post('nombreCompleto'));
+        $datos = $this->load->registroAsesor_model->crearCredencialesVendedor($cedulaAsesor,$idCliente, 
+            $nombreCompleto);
+        echo json_encode($datos);
+    }
+
+    //Metodo para cargar los tipos de documentos
+    public function obtenerTipoDocumentos(){
+        $datos = $this->load->registroAsesor_model->obtenerTipoDocumentos();
         echo json_encode($datos);
     }
 }

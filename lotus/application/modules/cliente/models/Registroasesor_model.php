@@ -47,9 +47,8 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para crear asesores de belleza
-    public function registroAsesoresBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,
-    	$fechaNacimientoAsesor,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad,$direccion,
-    	$email,$referido,$lider, $tipoContacto, $fechaActual){
+    public function registroAsesoresDeBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,
+    	$fechaNacimientoAsesor,$tipoDocumento,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider, $tipoContacto, $fechaActual){
 
         $rolVendedor = 2;
         //Validacion Telefono fijo
@@ -80,6 +79,7 @@ class RegistroAsesor_model extends CI_Model
     		'fk_id_vendedor' => $referido,
     		'fk_id_rol' => $rolVendedor,
     		'fk_id_lider' => $lider,
+            'fk_id_tipoDocumento' => $tipoDocumento,
             'fecha_ingreso' => $fechaActual,
             'super_lider' => 'N'
     		));
@@ -175,7 +175,7 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para buscar quien es el super lider
-    function buscarIdSuperLider($mcaSuperLider){
+    public function buscarIdSuperLider($mcaSuperLider){
         $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
         $this->db->where('super_lider', $mcaSuperLider);
@@ -193,6 +193,32 @@ class RegistroAsesor_model extends CI_Model
         }
 
         return $id_cliente;
+    }
+
+    //Metodo para la creacion de credenciales para los vendedores
+    public function crearCredencialesVendedor($cedulaAsesor,$idCliente,$nombreCompleto){
+
+        $this->db->insert('admin_usuario', array('usuario' => $cedulaAsesor,
+            'clave' => md5($cedulaAsesor),
+            'nombre_completo' => $nombreCompleto,
+            'nro_documento' => $cedulaAsesor,
+            'estado_habilitacion' => 1, //Los vendedores siempre inician habilitados (por eso valor 1)
+            'fk_id_cliente' => $idCliente,
+            'fk_id_rol' => 2)); //Rol 2: Vendedor
+
+        return true;
+    }
+
+    //Metodo para cargar los tipos de documentos
+    public function obtenerTipoDocumentos(){
+        
+        $this->db->select('*');
+        $this->db->from('tab_tipo_documento');
+
+        $query = $this->db->get();
+        $ds = $query->result_array();
+
+        return $ds;
     }
 
 }
