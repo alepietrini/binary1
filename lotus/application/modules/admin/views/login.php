@@ -259,7 +259,6 @@
                                         </td>
                                         <td>
                                             <select id="stipoDocumento" class="form-control">
-                                                <option value="">-Seleccionar-</option>
                                             </select>
                                         </td>
                                         <td></td>
@@ -314,7 +313,6 @@
                                         </td>
                                         <td>
                                             <select id="sProvincia" class="form-control">
-                                                <option value="">-Seleccionar-</option>
                                             </select>
                                         </td>
                                         <td></td>
@@ -327,7 +325,6 @@
                                         </td>
                                         <td>
                                             <select id="sCiudad" class="form-control">
-                                                <option value="">-Seleccionar-</option>
                                             </select>
                                         </td>
                                         <td></td>
@@ -448,6 +445,10 @@
             function getFechaNaciomientoAsesor(){
                 return $('#ifNacimientoAsesor').val();
             }
+            //Tipo de Documento
+            function getTipoDocumento(){
+                return $("#stipoDocumento option:selected" ).val();
+            }
             //Cedula
             function getCedulaAsesor(){
                 return $('#icedula').val();
@@ -522,10 +523,6 @@
                 id_cliente = valor;
             }
 
-            //Tipo de Documento
-            function getTipoDocumento(){
-                return $("#stipoDocumento option:selected" ).val();
-            }
 
             //
             $(function(){            
@@ -617,7 +614,7 @@
                 $('#ieMail').val('');
                 $('#ireferido').val('');
                 $('#ilider').val('');
-                $('#sRol').val('');
+                $('#stipoDocumento').val('');
                 $("#rtipContactoMail").prop("checked", false);
                 $("#rtipContactoTlf").prop("checked", false);
 
@@ -628,14 +625,16 @@
 
             //Metodo para obtener las provincias
             function obtenerProvincias(){
-                //$( "#myselect option:selected" ).text();
-                   //
-                /*var url = "<?php echo base_url(); ?>index.php/cliente/registroAsesor/registroAsesoraBelleza";
-                window.open(url ,'_self');*/
                   /*$.isLoading({
                            text: "Cargando",
                            position: "overlay"
                           });*/
+                $('#sProvincia').empty();
+                $('#sProvincia').append($('<option>', {
+                    value: '',
+                    text: '-Seleccionar-'
+                }));
+
 
                   $.ajax({
                          type: 'POST',
@@ -664,6 +663,11 @@
                            text: "Cargando",
                            position: "overlay"
                     });
+                    $('#sCiudad').empty();
+                    $('#sCiudad').append($('<option>', {
+                        value: '',
+                        text: '-Seleccionar-'
+                    }));
 
                     $.ajax({
                          type: 'POST',
@@ -766,6 +770,7 @@
                            $.isLoading("hide");
                             if (data == true){
                                 buscarIdCliente();
+                                //ingresarTablaReferidos();
                             }
                             else{
                                 
@@ -921,7 +926,13 @@
                     {     
                         $.isLoading("hide");
                         if (data == true){
-                            validarLiderIngresado();
+                            if (getCodLider() != ''){
+                                validarLiderIngresado();
+                            }
+                            else{
+                                buscarIdSuperLider('S');
+                            }
+                            
                         }
                         else{
                             var text = 'El Código del Referido no existe';
@@ -1090,8 +1101,14 @@
                     {     
                         $.isLoading("hide");
                         if ((data != null) && (data != undefined) && (data != '')){
-                            setIdCliente(data);
-                            ingresarTablaReferidos(data);
+                            setIdCliente(data); //Asihno el valor Id_cliente 
+                            if (getCodReferido() != ''){
+                                ingresarTablaReferidos();
+                            }
+                            else{
+                                crearCredencialesVendedor();
+                            }
+
                         } 
                         else{
                             //$.isLoading("hide");
@@ -1104,7 +1121,7 @@
             }
 
             //Metodo para ingresar en la tabla tab_referido
-            function ingresarTablaReferidos(idCliente){
+            function ingresarTablaReferidos(){
 
                  $.isLoading({
                     text: "Cargando",
@@ -1128,7 +1145,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaAsesor:getCedulaAsesor(),fechaActual:getFechaActual(),idCliente: idCliente},
+                    data: {cedulaAsesor:getCedulaAsesor(),fechaActual:getFechaActual(),codReferido: getCodReferido()},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/ingresarTablaReferidos',
                     success: function (data) 
                     {     
@@ -1181,7 +1198,10 @@
                     {     
                        $.isLoading("hide");
                         if ((data != '') && (data != null) && (data != undefined)){
-                            registroAsesoresDeBelleza(data);
+                            if (validarCamposObligatorios()){
+                                registroAsesoresDeBelleza(data);
+                            }
+                            
                         }
                         else{
                             
@@ -1276,7 +1296,8 @@
                 params.theme = 'teal';
                 params.life = '2000';
 
-                //                            
+                //        
+                $('#stipoDocumento').empty();                    
                 $('#stipoDocumento').append($('<option>', {
                     value: '',
                     text: '-Seleccionar-'
@@ -1319,7 +1340,7 @@
                 });
 
                 $('#bCrearAsesor').click(function(){
-                    validarCedulaAsesor()
+                    validarCedulaAsesor();
                 });
 
                 //Obtengo el tipo de contacto dependiendo del seleccionado

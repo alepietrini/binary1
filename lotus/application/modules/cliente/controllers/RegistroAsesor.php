@@ -8,17 +8,6 @@ class RegistroAsesor extends MX_Controller
         $this->load->model('cliente/registroAsesor_model');
     }
 
-    //Metodo parea redireccionar al formulario de registro
-  /* public function registroAsesoraBelleza(){
-
-        $datos1=$this->rol_model->cabecera();
-        $this->load->view('templates/header', $datos1);
-    	$this->load->view('formularioRegistroCliente');
-        $this->load->view('templates/footer');
-                
-                
-    }*/
-
     //Metodo para retornas las provincias
     public function obtenerProvincias(){
         
@@ -103,8 +92,8 @@ class RegistroAsesor extends MX_Controller
     public function ingresarTablaReferidos(){
         $cedulaAsesor = trim($this->input->post('cedulaAsesor'));
         $fechaActual = trim($this->input->post('fechaActual'));
-        $idCliente = trim($this->input->post('idCliente'));
-        $datos = $this->load->registroAsesor_model->ingresarTablaReferidos($cedulaAsesor,$fechaActual,$idCliente);
+        $codReferido = trim($this->input->post('codReferido'));
+        $datos = $this->load->registroAsesor_model->ingresarTablaReferidos($cedulaAsesor,$fechaActual,$codReferido);
         echo json_encode($datos);
     }
 

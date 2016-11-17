@@ -129,6 +129,7 @@ class RegistroAsesor_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tab_cliente');
         $this->db->where('id_cliente='.$codLider);
+        $this->db->where('fk_id_rol',3);
 
         $query = $this->db->get();
         $ds = $query->result_array();
@@ -165,11 +166,11 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para ingresar en la tabla tab_referido
-    public function ingresarTablaReferidos($cedulaAsesor,$fechaActual,$idCliente){
+    public function ingresarTablaReferidos($cedulaAsesor,$fechaActual,$codReferido){
 
         $this->db->insert('tab_referido', array('nro_documento' => $cedulaAsesor,
             'fecha_ingreso' => $fechaActual,
-            'fk_id_cliente' => $idCliente));
+            'fk_id_cliente' => $codReferido));
 
         return true;
     }
