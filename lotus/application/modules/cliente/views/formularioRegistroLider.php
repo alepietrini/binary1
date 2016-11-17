@@ -716,7 +716,13 @@
                     {     
                         $.isLoading("hide");
                         if (data == true){
-                            validarCodigoLiderIngresado();
+                        	if (getCodLiderLider() != ''){
+                        		validarCodigoLiderIngresado();
+                        	}
+                        	else{
+                        		buscarIdSuperLider('S');
+                        	}
+                            
                         }
                         else{
                             var text = 'El Código del Referido no existe';
@@ -759,7 +765,7 @@
                         $.isLoading("hide");
                         if (data == true){
                             if (validarCamposObligatoriosLider()){
-                                if (getCodLider() == ''){
+                                if (getCodLiderLider() == ''){
                                     buscarIdSuperLider('S');
                                 }
                                 else{
@@ -812,7 +818,7 @@
                         }
                         else{
                             
-                            var text = 'Se presento un problema al registrar al asesor';
+                            var text = 'Se presento un problema al registrar al Lider';
                             $.notific8(text, params);
                             
                         }
@@ -904,21 +910,25 @@
                            $.isLoading("hide");
                             if (data == true){
                                 //buscarIdCliente();
+                                
                                 if (getCodReferidoLider() != ''){
                                 	ingresarTablaReferidos();
                                 }
                                 else{
-                                	var text = 'Asesor Registrado correctamente';
-                                }
-                                
+                                	var text = 'Lider Registrado correctamente';
+                                	// show notification
+                                	$.notific8(text, params);
+
+                                	var url = "<?php echo base_url(); ?>index.php/admin/login/index";
+									window.open(url ,'_self');
+                                } 
                             }
-                            else{
-                                
-                                var text = 'Se presento un problema al registrar al asesor';
-                                 // show notification
+                            else{  
+                                var text = 'Se presento un problema al registrar al Lider';
+                                // show notification
                                 $.notific8(text, params);
-                             
                             }
+                            
                             
                            
                             
@@ -958,11 +968,11 @@
                     {     
                         $.isLoading("hide");
                        if (data == true){
-                            var text = 'Asesor Registrado correctamente';
+                            var text = 'Lider Registrado correctamente';
                        }
                        else
                        {
-                            var text = 'Se presento un problema al registrar al asesor';
+                            var text = 'Se presento un problema al registrar al Lider';
                        }
 
                        $.notific8(text, params);

@@ -63,7 +63,7 @@ class RegistroLider extends MX_Controller
     //Metodo para validar el codigo del Lider ingresado
     public function validarCodigoLiderIngresado(){
         $codLider= trim($this->input->post('codLider'));
-        $datos = $this->load->registroAsesor_model->validarLiderIngresado($codLider);
+        $datos = $this->load->registrolider_model->validarCodigoLiderIngresado($codLider);
         echo json_encode($datos);
     }
 
