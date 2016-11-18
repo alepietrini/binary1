@@ -166,25 +166,25 @@
                         <td></td>
 
                         <td>
-                        	<label class="control-label required" for="for_pnombreLider"> Primer Nombre
+                        	<label class="control-label required" for="for_pnombreLider"> PRIMER NOMBRE
                             <span class="required"> * </span></label>
                             <input id="ipNombreLider" class="form-control inputRegistro" type="text" name="ipNombreLider" maxlength="15">
                         </td>
                         <td></td>
                         <td>
-                        	<label class="control-label required" for="for_snombreLider"> Segundo Nombre
+                        	<label class="control-label required" for="for_snombreLider"> SEGUNDO NOMBRE
                             </label>
                             <input id="isNombreLider" class="form-control inputRegistro" type="text" name="isNombreLider" maxlength="15">
                         </td>
                         <td></td>
                         <td>
-                        	<label class="control-label required" for="for_pApellidoLider"> Primer Apellido
+                        	<label class="control-label required" for="for_pApellidoLider"> PRIMER APELLIDO
                             <span class="required"> * </span></label>
                             <input id="ipApellidoLider" class="form-control inputRegistro" type="text" name="ipApellidoLider" maxlength="15">
                         </td>
                         <td></td>
                         <td>
-                        	<label class="control-label required" for="for_sApellidoLider"> Segundo Apellido
+                        	<label class="control-label required" for="for_sApellidoLider"> SEGUNDO APELLIDO
                             </label>
                             <input id="isApellidoLider" class="form-control inputRegistro" type="text" name="isApellidoLider" maxlength="15">
                         </td>
@@ -192,26 +192,26 @@
                     <tr>
                     	<td></td>
                     	<td>
-	                    	<label class="control-label required" for="for_fNacimientoLider">Fecha de Nacimiento <span class="required"> * </span></label>
+	                    	<label class="control-label required" for="for_fNacimientoLider">FECHA DE NACIMIENTO <span class="required"> * </span></label>
 	                    	<!--<span class="input-group-addon left">
                             <span class="glyphicon glyphicon-calendar"></span></span>-->
                             <input id="ifNacimientoLider" class="form-control dp"  placeholder="yyyy-mm-dd" type="text" name="ifNacimientoLider">
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_TipDocumentoLider">Tipo de Documento <span class="required"> * </span></label>
+                            <label class="control-label required" for="for_TipDocumentoLider">TIPO DE DOCUMENTO <span class="required"> * </span></label>
                             <select id="stipoDocumentoLider" class="form-control">
                             </select>
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_CedulaLider">Cédula <span class="required"> * </span></label>
+                            <label class="control-label required" for="for_CedulaLider">NÚMERO DE DOCUMENTO <span class="required"> * </span></label>
                             <input id="icedulaLider" class="form-control inputRegistro" type="text" 
                             name="icedulaLider" maxlength="10">
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_TlfFijoLider">Teléfono fijo </label>
+                            <label class="control-label required" for="for_TlfFijoLider">TELÉFONO FIJO </label>
                             <input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
                             name="itlfFijo" maxlength="9">
                         </td>
@@ -219,25 +219,25 @@
                     <tr>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_tlfCelularLider">Celular <span class="required"> * </span></label>
+                            <label class="control-label required" for="for_tlfCelularLider">CELULAR <span class="required"> * </span></label>
                             <input id="itlfCelularLider" class="form-control inputRegistro" type="text" 
                             name="itlfCelularLider" maxlength="10">
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_paisLider">País </label>
+                            <label class="control-label required" for="for_paisLider">PAÍS </label>
                             <input id="ipaisLider" class="form-control inputRegistro" type="text" 
                     		name="ipaisLider" maxlength="10" value="Ecuador" disabled="disabled">                       
 	                    </td>
 	                    <td></td>
 	                    <td>
-	                        <label class="control-label required" for="for_provinciaLider">Provincia <span class="required"> * </span></label>
+	                        <label class="control-label required" for="for_provinciaLider">PROVINCIA <span class="required"> * </span></label>
 	                        <select id="sProvinciaLider" class="form-control">
 	                        </select>
 	                    </td>
 	                    <td></td>
                         <td>
-                            <label class="control-label required" for="for_ciudadLider">Ciudad <span class="required"> * </span></label>
+                            <label class="control-label required" for="for_ciudadLider">CIUDAD <span class="required"> * </span></label>
                             <select id="sCiudadLider" class="form-control">
                             </select>
                         </td>
@@ -245,7 +245,7 @@
                     <tr>
                     	<td></td>
                         <td>
-                            <label class="control-label required" for="for_DireccionLider">Direccion <span class="required"> * </span></label>
+                            <label class="control-label required" for="for_DireccionLider">DIRECCIÓN <span class="required"> * </span></label>
                             <input id="iDireccionLider" class="form-control inputRegistro" type="text" 
                             name="iDireccionLider" maxlength="100">
                         </td>
@@ -257,13 +257,13 @@
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_referidoLider">Código del Referido</label>
+                            <label class="control-label required" for="for_referidoLider">CÓDIGO DEL REFERIDO</label>
                             <input id="ireferidoLider" class="form-control inputRegistro" type="text" 
                             name="ireferidoLider" maxlength="5">
                         </td>
                         <td></td>
                         <td>
-                            <label class="control-label required" for="for_LiderLiderr">Código del Lider 
+                            <label class="control-label required" for="for_LiderLiderr">CÓDIGO DEL LIDER 
                             </label>
                             <input id="iliderLider" class="form-control inputRegistro" type="text" 
                             name="ilider" maxlength="5">
@@ -275,23 +275,14 @@
 			
 		</div>
 		<br>
-		<div>
-			<table>
-				<colgroup>
-					<col width="600px" />
-					<col width="600px" />
-				</colgroup>
-				<tbody>
-					<tr>			
-						<td colspan="2">
-							<button id="bCrearLider" type="button" class="btn btn-primary">Crear</button>
-            				<button id="bCancelarLider" type="button" class="btn btn-default">Cancelar</button>
-						</td>
-						
-					</tr>
-					
-				</tbody>
-			</table>
+		<div class="panel-footer">
+            <div class="pull-right">
+                <a type='button' style="min-width: 80px;" class='btn btn-default btn-sm' 
+                href="<?php echo base_url(); ?>index.php/index/index">SALIR</a>
+                <button id="bRegistrarLider" type="button" class="formulario_personas_guardar btn-success btn btn-sm">REGISTRAR</button>
+            </div>
+            <div class="clearfix"></div>
+
 
 		</div>
 
@@ -406,7 +397,7 @@
 	            obtenerCiudadesLider(getProvinciaLider());
 	        });
 
-	        $('#bCrearLider').click(function(){
+	        $('#bRegistrarLider').click(function(){
 	            validarCedulaLider();
 	        });
 
