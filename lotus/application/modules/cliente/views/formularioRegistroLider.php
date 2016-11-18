@@ -146,7 +146,7 @@
 </body>
 
 
-<form name="formulario_personas" method="post" action="" enctype="multipart/form-data">
+<form name="formRegistroLider" method="post" action="" enctype="multipart/form-data" id="formRegistroLider">
 	<div class="image-fondo-lotus">
 		<div>
 			<table>
@@ -164,19 +164,19 @@
                     <br>
                     <tr>
                         <td></td>
-                        <td><label class="control-label required" for="for_pnombreLider"> PRIMER NOMBRE
+                        <td><label class="control-label required" for="for_pnombreLider"> Primer Nombre
                             <span class="required"> * </span></label>
                         </td>
                         <td></td>
-                        <td><label class="control-label required" for="for_snombreLider"> SEGUNDO NOMBRE
+                        <td><label class="control-label required" for="for_snombreLider"> Segundo Nombre
                             </label>
                         </td>
                         <td></td>
-                        <td><label class="control-label required" for="for_pApellidoLider"> PRIMER APELLIDO
+                        <td><label class="control-label required" for="for_pApellidoLider"> Primer Apellido
                             <span class="required"> * </span></label>
                         </td>
                         <td></td>
-                        <td><label class="control-label required" for="for_sApellidoLider"> SEGUNDO APELLIDO
+                        <td><label class="control-label required" for="for_sApellidoLider"> Segundo Apellido
                             </label>
                         </td>
                     </tr>   
@@ -196,13 +196,15 @@
                     <br>
                     <tr>
                         <td></td>
-                        <td><label class="control-label required" for="for_fNacimientoLider">FECHA DE NACIMIENTO <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_fNacimientoLider">Fecha de Nacimiento 
+                        <span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_TipDocumentoLider">TIPO DE DOCUMENTO <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_TipDocumentoLider">Tipo de Documento 
+                        <span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_CedulaLider">NÚMERO DE DOCUMENTO <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_nroDocumentoLider">Número de Documento <span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_TlfFijoLider">TELÉFONO FIJO </label>
+                        <td><label class="control-label required" for="for_TlfFijoLider">Teléfono Fijo </label>
                         </td>
                     </tr>   
                     <tr>
@@ -215,21 +217,21 @@
                             </select>
                         </td>
                         <td></td>
-                        <td><input id="icedulaLider" class="form-control inputRegistro" type="text" 
-                            name="icedulaLider" maxlength="10"></td>
+                        <td><input id="iNroDocumentoLider" class="form-control inputRegistro" type="text" 
+                            name="iNroDocumentoLider"></td>
                         <td></td>
                         <td><input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
                             name="itlfFijo" maxlength="9"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><label class="control-label required" for="for_tlfCelularLider">CELULAR <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_tlfCelularLider">Télefono Celular <span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_paisLider">PAÍS </label></td>
+                        <td><label class="control-label required" for="for_paisLider">País </label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_provinciaLider">PROVINCIA <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_provinciaLider">Provincia <span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_ciudadLider">CIUDAD <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_ciudadLider">Ciudad <span class="required"> * </span></label></td>
                     </tr> 
                     <tr>
                         <td></td>
@@ -247,13 +249,14 @@
                     </tr> 
                     <tr>
                         <td></td>
-                        <td><label class="control-label required" for="for_DireccionLider">DIRECCIÓN <span class="required"> * </span></label></td>
+                        <td><label class="control-label required" for="for_DireccionLider">Dirección <span class="required"> * </span></label></td>
                         <td></td>
                         <td><label class="control-label required" for="for_emailLider">E-Mail<span class="required"> * </span></label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_referidoLider">CÓDIGO DEL REFERIDO</label></td>
+                        <td><label class="control-label required" for="for_referidoLider">Código del Referido
+                        </label></td>
                         <td></td>
-                        <td><label class="control-label required" for="for_LiderLiderr">CÓDIGO DEL LIDER 
+                        <td><label class="control-label required" for="for_LiderLiderr">Código del Lider 
                             </label></td>
                     </tr>  
                     <tr>
@@ -305,19 +308,19 @@
 	    /***************************************GETTER Y SETTER***********************************************/
         //Primer Nombre
         function getpNombreLider(){
-            return $('#ipNombreLider').val();
+            return $('#ipNombreLider').val().toUpperCase();
         }
         //Segundo Nombre
         function getsNombreLider(){
-            return $('#isNombreLider').val();
+            return $('#isNombreLider').val().toUpperCase();
         }
         //Apelliodo Paterno
         function getApellidoPLider(){
-            return $('#ipApellidoLider').val();
+            return $('#ipApellidoLider').val().toUpperCase();
         } 
         //Apelliodo Materno
         function getApellidoMLider(){
-            return $('#isApellidoLider').val();
+            return $('#isApellidoLider').val().toUpperCase();
         }
         //Fecha de nacimiento
         function getFechaNaciomientoLider(){
@@ -328,8 +331,8 @@
             return $("#stipoDocumentoLider option:selected" ).val();
         }
         //Cedula
-        function getCedulaLider(){
-            return $('#icedulaLider').val();
+        function getNroDocumentoLider(){
+            return $('#iNroDocumentoLider').val();
         }
         //Telefono Fijo
         function getTlfFijoLider(){
@@ -353,7 +356,7 @@
         }
         //Direccion
         function getDireccionLider(){
-            return $('#iDireccionLider').val();
+            return $('#iDireccionLider').val().toUpperCase();
         }
         //E-mail
         function getEmailLider(){
@@ -387,6 +390,14 @@
             id_cliente = valor;
         }
 
+        //Id_tipo_Documento
+        function getIdTipoDocumento(){
+            return id_tipo_documento;
+        }
+        function setIdTipoDocumento(valor){
+            id_tipo_documento = valor;
+        }
+
 	    //Carga de pantalla
 	    window.onload = function alcargar()
 	    {
@@ -398,13 +409,13 @@
 	        });
 
 	        $('#bRegistrarLider').click(function(){
-	            validarCedulaLider();
+	            validarNroDocumentoLider();
 	        });
 
 	        //Validaciones numericas
-	        $('#itlfFijoLider').keypress(function(key) {
+	        /*$('#itlfFijoLider').keypress(function(key) {
 	            if(key.charCode < 48 || key.charCode > 57) return false;
-	        });
+	        });*/
 
 	        /*$('#itlfCelular').keydown(function(event) {
 	            if(event.shiftKey)  {
@@ -416,9 +427,9 @@
 	                }          
 	            }
 	        });*/
-	        $('#itlfCelularLider').keypress(function(key) {
+	        /*$('#itlfCelularLider').keypress(function(key) {
 	            if(key.charCode < 48 || key.charCode > 57) return false;
-	        });
+	        });*/
 
 	        //Validacion Referido y Lider
 	        $('#ireferidoLider').keypress(function(key) {
@@ -445,6 +456,13 @@
 	        $('#isApellidoAsesor').keypress(function(key) {
 	            if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90) && (key.charCode != 45)) return false;
 	        });*/
+            $('#stipoDocumentoLider').change(function () {
+                if (getTipoDocumentoLider() != ''){
+                    buscarIdTipoDocumento();
+                    asignarValidacionANroDocumento($(this));
+                }
+                
+            });
 
 	    };
 
@@ -455,11 +473,11 @@
 	        $('#isNombreLider').val('');
 	        $('#ipApellidoLider').val('');
 	        $('#isApellidoLider').val('');
-	        $('#ifNacimientoLider').val('');
+	        $('#ifNacimientoLider').mask('0000-00-00');
 	        $('#stipoDocumentoLider').val('');
-	        $('#icedulaLider').val('');
-	        $('#itlfFijoLider').val('');
-	        $('#itlfCelularLider').val('');
+	        $('#iNroDocumentoLider').val('');
+	        $('#itlfFijoLider').mask("00-000-0000", {placeholder: "00-000-0000"})
+	        $('#itlfCelularLider').mask("00-0000-0000", {placeholder: "00-0000-0000"})
 	        $('#sCiudad').val('');
 	        $('#sProvinciaLider').val('');
 	        $('#sCiudadLider').val('');
@@ -467,6 +485,10 @@
 	        $('#ieMailLider').val('');
 	        $('#sRireferidoLiderol').val('');
 	        $('#iliderLider').val('');
+            $('#sCiudadLider').append($('<option>', {
+                value: '',
+                text: '-SELECCIONAR-'
+            }));
 
 	        obtenerTipoDocumentosLider();
 	    }
@@ -495,7 +517,7 @@
             $('#stipoDocumentoLider').empty();                        
             $('#stipoDocumentoLider').append($('<option>', {
                 value: '',
-                text: '-Seleccionar-'
+                text: '-SELECCIONAR-'
             }));
 
             $.ajax({
@@ -509,7 +531,7 @@
                     //$.isLoading("hide");
                     $.each(data, function(i, reg){
                         $('#stipoDocumentoLider').append($('<option>', {
-                            value: data[i].id_tipo_documento,
+                            value: data[i].tipo_documento,
                             text: data[i].nombre_tipo_documento
                         }));
                     });
@@ -528,7 +550,7 @@
                 $('#sProvinciaLider').empty();
                 $('#sProvinciaLider').append($('<option>', {
 	                value: '',
-	                text: '-Seleccionar-'
+	                text: '-SELECCIONAR-'
            		 }));
 
                   $.ajax({
@@ -563,7 +585,7 @@
                     $('#sCiudadLider').empty();
                     $('#sCiudadLider').append($('<option>', {
 		                value: '',
-		                text: '-Seleccionar-'
+		                text: '-SELECCIONAR-'
            		 	}));
 
                     $.ajax({
@@ -588,7 +610,7 @@
             }
 
             //Validar si la cedula existe
-            function validarCedulaLider(){
+            function validarNroDocumentoLider(){
                 $.isLoading({
                     text: "Cargando",
                     position: "overlay"
@@ -612,8 +634,8 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaLider:getCedulaLider()},
-                    url: '<?php echo base_url(); ?>index.php/cliente/registroLider/validarCedulaLider',
+                    data: {nroDocumentoLider:getNroDocumentoLider()},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroLider/validarNroDocumentoLider',
                     success: function (data) 
                     {     
                         $.isLoading("hide");
@@ -838,7 +860,7 @@
                 params.theme = 'teal';
                 params.life = '2000';
 
-                if ((getpNombreLider() == '') || (getApellidoPLider() == '') || (getFechaNaciomientoLider() == '') || (getTipoDocumentoLider() == '') || (getCedulaLider() == '') || (getTlfCelularLider() == '') || (getProvinciaLider() == '') || (getCiudadLider() == '') || (getDireccionLider() == '') || 
+                if ((getpNombreLider() == '') || (getApellidoPLider() == '') || (getFechaNaciomientoLider() == '') || (getTipoDocumentoLider() == '') || (getNroDocumentoLider() == '') || (getTlfCelularLider() == '') || (getProvinciaLider() == '') || (getCiudadLider() == '') || (getDireccionLider() == '') || 
                     (getEmailLider() == '')){
 
                     bandera = false;
@@ -891,7 +913,7 @@
                          data: {pNombreLider:getpNombreLider(), sNombreLider:getsNombreLider(), 
                             apellidoPLider:getApellidoPLider(), apellidoMLider:getApellidoMLider(), 
                             fechaNacimientoLider:getFechaNaciomientoLider(), 
-                            tipoDocumentoLider:getTipoDocumentoLider(),cedulaLider:getCedulaLider(), 
+                            tipoDocumentoLider:getTipoDocumentoLider(),nroDocumentoLider:getIdTipoDocumento(), 
                             tlfFijoLider:getTlfFijoLider(), tlfCelularLider:getTlfCelularLider(), 
                             idProvincia:getProvinciaLider(),idCiudad:getCiudadLider(), 
                             direccion:getDireccionLider(), email:getEmailLider(), referido:getCodReferidoLider(), lider:superLider, fechaActual:getFechaActual()},
@@ -910,8 +932,11 @@
                                 	// show notification
                                 	$.notific8(text, params);
 
-                                	var url = "<?php echo base_url(); ?>index.php/admin/login/index";
-									window.open(url ,'_self');
+                                    $('#formRegistroLider').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
+                                    $('#formRegistroLider').submit();
+
+                                	/*var url = "<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema";
+									window.open(url ,'_self');*/
                                 } 
                             }
                             else{  
@@ -953,7 +978,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaLider:getCedulaLider(),fechaActual:getFechaActual(),codReferido: getCodReferidoLider()},
+                    data: {nroDocumentoLider:getNroDocumentoLider(),fechaActual:getFechaActual(),codReferido: getCodReferidoLider()},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroLider/ingresarTablaReferidos',
                     success: function (data) 
                     {     
@@ -971,6 +996,77 @@
                     }
                 }); 
             }
+
+    /*EVENTOS RELACIONADOS CON LA VALIDACION DEL TIPO DE DOCUMENTO*/
+    function asignarValidacionANroDocumento(target) {
+        /*RUC*/
+        if (target.val() == 'RUC')
+        {
+            $('#iNroDocumentoLider').removeAttr('cedula');
+            $('#iNroDocumentoLider').removeAttr('pasaporte');
+            $('#iNroDocumentoLider').attr('digits', true);
+            $('#iNroDocumentoLider').attr('maxlength', 13);
+            $('#iNroDocumentoLider').attr('minlength', 13);
+            $('#iNroDocumentoLider').attr('ruc', true);
+        }
+        /*REFUGIADO*/
+        if (target.val() == 'R')
+        {
+            $('#iNroDocumentoLider').removeAttr('cedula');
+            $('#iNroDocumentoLider').removeAttr('ruc');
+            $('#iNroDocumentoLider').removeAttr('pasaporte');
+            $('#iNroDocumentoLider').removeAttr('digits');
+            $('#iNroDocumentoLider').removeAttr('minlength');
+            $('#iNroDocumentoLider').attr('maxlength', 16);
+        }
+        /*PASAPORTE*/
+        if (target.val() == 'P')
+        {
+            $('#iNroDocumentoLider').removeAttr('cedula');
+            $('#iNroDocumentoLider').removeAttr('ruc');
+            $('#iNroDocumentoLider').removeAttr('digits');
+            $('#iNroDocumentoLider').attr('pasaporte', '^[A-Za-zÑñ]{1}[0-9]{6}$');
+            $('#iNroDocumentoLider').attr('maxlength', 7);
+            $('#iNroDocumentoLider').attr('minlength', 7);
+        }
+        /*CEDULA*/
+        if (target.val() == 'C')
+        {
+
+            $('#iNroDocumentoLider').removeAttr('pasaporte');
+            $('#iNroDocumentoLider').removeAttr('ruc');
+            $('#iNroDocumentoLider').attr('cedula', true);
+            $('#iNroDocumentoLider').attr('maxlength', 10);
+            $('#iNroDocumentoLider').attr('minlength', 10);
+            $('#iNroDocumentoLider').attr('digits', true);
+        }
+
+    }
+
+    //Metodo para buscar el Id del tipo de documento
+    function buscarIdTipoDocumento(){
+        $.isLoading({
+            text: "Cargando",
+            position: "overlay"
+        });
+
+        $.ajax({
+            type: 'POST',
+            async:false,
+            dataType: 'json',
+            data: {tipoDocumento:getTipoDocumentoLider()},
+            url: '<?php echo base_url(); ?>index.php/cliente/registroLider/buscarIdTipoDocumento',
+            success: function (data) 
+            {     
+                $.isLoading("hide");
+                setIdTipoDocumento(data); 
+            }
+        });
+    }
+
+    //Pagina de ingreso al sistema
+
+   //asignarValidacionANroDocumento($('#iNroDocumentoLider'));
 	</script>
 </html>
 

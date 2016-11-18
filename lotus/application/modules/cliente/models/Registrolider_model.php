@@ -48,11 +48,11 @@ class Registrolider_model extends CI_Model
     }
 
     //Metodo para validar si la cedula existe
-    public function validarCedulaLider($cedulaLider){
+    public function validarNroDocumentoLider($nroDocumentoLider){
 
         $this->db->select('*');
         $this->db->from('tab_cliente');
-        $this->db->where('nro_documento='.$cedulaLider);
+        $this->db->where('nro_documento='.$nroDocumentoLider);
 
         $query = $this->db->get();
         $ds = $query->result_array();
@@ -124,7 +124,7 @@ class Registrolider_model extends CI_Model
 
     //Metodo para crear asesores de belleza
     public function registroLider($pNombreLider,$sNombreLider,$apellidoPLider,$apellidoMLider,
-    	$fechaNacimientoLider,$tipoDocumentoLider,$cedulaLider,$tlfFijoLider,$tlfCelularLider,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider,$fechaActual){
+    	$fechaNacimientoLider,$tipoDocumentoLider,$nroDocumentoLider,$tlfFijoLider,$tlfCelularLider,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider,$fechaActual){
 
         $rolLider = 3;
         //Validacion Telefono fijo
@@ -143,7 +143,7 @@ class Registrolider_model extends CI_Model
     		'apellido_paterno' => $apellidoPLider,
     		'apellido_materno' => $apellidoMLider,
     		'fecha_nacimiento' => $fechaNacimientoLider,
-    		'nro_documento' => $cedulaLider,
+    		'nro_documento' => $nroDocumentoLider,
     		'tlf_fijo' => $tlfFijoLider,
     		'tlf_celular' => $tlfCelularLider,
     		'direccion' => $direccion,
@@ -164,13 +164,35 @@ class Registrolider_model extends CI_Model
     }
 
     //Metodo para ingresar en la tabla tab_referido
-    public function ingresarTablaReferidos($cedulaLider,$fechaActual,$codReferido){
+    public function ingresarTablaReferidos($nroDocumentoLider,$fechaActual,$codReferido){
 
         $this->db->insert('tab_referido', array('nro_documento' => $cedulaLider,
             'fecha_ingreso' => $fechaActual,
             'fk_id_cliente' => $codReferido));
 
         return true;
+    }
+
+    //Metodo para buscar el Id del tipo de documento
+    public function buscarIdTipoDocumento($tipoDocumento){
+
+        $this->db->select('id_tipo_documento');
+        $this->db->from('tab_tipo_documento');
+        $this->db->where('tipo_documento', $tipoDocumento);
+
+        $query = $this->db->get();
+        $ds = $query->row_array();
+
+        if (count($ds)>0){
+
+            $id_tipo_documento = $ds['id_tipo_documento'];
+        }
+        else{
+
+            $id_tipo_documento = null;
+        }
+
+        return $id_tipo_documento;
     }
 }
 ?>

@@ -191,7 +191,7 @@
                             <table>
                                 <colgroup>
                                     <col width="50px"/>
-                                    <col width="170px"/>
+                                    <col width="180px"/>
                                     <col width="100px"/>
                                     <col width="160px"/>
                                 </colgroup>
@@ -266,11 +266,11 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <label class="control-label required" for="for_CedulaAsesor">Cédula <span class="required"> * </span></label>
+                                            <label class="control-label required" for="for_NroDocumentoAsesor">Número de Documento <span class="required"> * </span></label>
                                         </td>
                                         <td>
-                                            <input id="icedula" class="form-control inputRegistro" type="text" 
-                                            name="icedula" maxlength="10">
+                                            <input id="iNroDocumentoAsesor" class="form-control inputRegistro" type="text" 
+                                            name="iNroDocumentoAsesor">
                                         </td>
                                         <td></td>
                                     </tr>
@@ -281,7 +281,7 @@
                                         </td>
                                         <td>
                                             <input id="itlfFijo" class="form-control inputRegistro" type="text" 
-                                            name="itlfFijo" maxlength="9">
+                                            name="itlfFijo" maxlength="12">
                                         </td>
                                         <td></td>
                                     </tr>
@@ -292,7 +292,7 @@
                                         </td>
                                         <td>
                                             <input id="itlfCelular" class="form-control inputRegistro" type="text" 
-                                            name="itlfCelular" maxlength="10">
+                                            name="itlfCelular" maxlength="12">
                                         </td>
                                         <td></td>
                                     </tr>
@@ -389,17 +389,19 @@
                                         </td>
                                         <td></td>
                                     </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <button id="bCrearAsesor" type="button" class="btn btn-primary">Crear</button>
-                                            <button id="bCancelarAsesor" type="button" class="btn btn-default">Cancelar</button>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>        
+
+                        </div>
+                        <br>
+                        <div class="panel-footer">
+                            <div class="pull-right">
+                                <button type='button' style="min-width: 80px;" 
+                                class='btn btn-default btn-sm' id="bCancelarAsesor">SALIR</button>
+                                <button id="bRegistrarAsesor" type="button" class="formulario_personas_guardar btn-success btn btn-sm">REGISTRAR</button>
+                            </div>
+                            <div class="clearfix"></div>
+
 
                         </div>
                     </div>
@@ -423,6 +425,7 @@
             var valProvincia = null;
             var tipoContacto = null;
             var id_cliente = null;
+            var id_tipo_documento = null;
 /*************************************88Metodos get y set***********************************************/
 
             //Primer Nombre
@@ -450,8 +453,8 @@
                 return $("#stipoDocumento option:selected" ).val();
             }
             //Cedula
-            function getCedulaAsesor(){
-                return $('#icedula').val();
+            function getNroDocumentoAsesor(){
+                return $('#iNroDocumentoAsesor').val();
             }
             //Telefono Fijo
             function getTlfFijoAsesor(){
@@ -521,6 +524,13 @@
             }
             function setIdCliente(valor){
                 id_cliente = valor;
+            }
+            //Id_tipo_Documento
+            function getIdTipoDocumento(){
+                return id_tipo_documento;
+            }
+            function setIdTipoDocumento(valor){
+                id_tipo_documento = valor;
             }
 
 
@@ -604,10 +614,10 @@
                 $('#isNombreAsesor').val('');
                 $('#ipApellidoAsesor').val('');
                 $('#isApellidoAsesor').val('');
-                $('#ifNacimientoAsesor').val('');
-                $('#icedula').val('');
-                $('#itlfFijo').val('');
-                $('#itlfCelular').val('');
+                $('#ifNacimientoAsesor').mask('0000-00-00');
+                $('#iNroDocumentoAsesor').val('');
+                $('#itlfFijo').mask("00-000-0000", {placeholder: "00-000-0000"});
+                $('#itlfCelular').mask("00-0000-0000", {placeholder: "00-0000-0000"});
                 $('#sProvincia').val('');
                 $('#sCiudad').val('');
                 $('#iDireccion').val('');
@@ -617,6 +627,10 @@
                 $('#stipoDocumento').val('');
                 $("#rtipContactoMail").prop("checked", false);
                 $("#rtipContactoTlf").prop("checked", false);
+                $('#sCiudad').append($('<option>', {
+                    value: '',
+                    text: '-Seleccionar-'
+                }));
 
                 obtenerTipoDocumentos();
                 
@@ -759,7 +773,7 @@
                          data: {pNombreAsesor:getpNombreAsesor(), sNombreAsesor:getsNombreAsesor(), 
                             apellidoPAsesor:getApellidoP(), apellidoMAsesor:getApellidoM(), 
                             fechaNacimientoAsesor:getFechaNaciomientoAsesor(), 
-                            tipoDocumento:getTipoDocumento(),cedulaAsesor:getCedulaAsesor(), 
+                            tipoDocumento:getIdTipoDocumento(),nroDocumentoAsesor:getNroDocumentoAsesor(), 
                             tlfFijoAsesor:getTlfFijoAsesor(), tlfCelularAsesor:getTlfCelularAsesor(), 
                             idProvincia:getProvincia(),idCiudad:getCiudad(), direccion:getDireccion(), 
                             email:getEmailAsesor(), referido:getCodReferido(), lider:superLider, 
@@ -807,7 +821,7 @@
                 params.life = '2000';
 
                 if ((getpNombreAsesor() == '') || (getApellidoP() == '') || (getFechaNaciomientoAsesor() == '') ||
-                    (getTipoDocumento() == '') || (getCedulaAsesor() == '') || (getTlfCelularAsesor() == '') ||
+                    (getTipoDocumento() == '') || (getNroDocumentoAsesor() == '') || (getTlfCelularAsesor() == '') ||
                     (getProvincia() == '') || (getCiudad() == '') || (getDireccion() == '') || 
                     (getTipoContacto() == '')){
 
@@ -823,7 +837,7 @@
             }
 
             //Validar si la cedula existe
-            function validarCedulaAsesor(){
+            function validarNroDocumentoAsesor(){
                 $.isLoading({
                     text: "Cargando",
                     position: "overlay"
@@ -847,8 +861,8 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaAsesor:getCedulaAsesor()},
-                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/validarCedulaAsesor',
+                    data: {nroDocumentoAsesor:getNroDocumentoAsesor()},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/validarNroDocumentoAsesor',
                     success: function (data) 
                     {     
                         $.isLoading("hide");
@@ -1095,7 +1109,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaAsesor: getCedulaAsesor()},
+                    data: {nroDocumentoAsesor: getNroDocumentoAsesor()},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/buscarIdCliente',
                     success: function (data) 
                     {     
@@ -1145,7 +1159,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaAsesor:getCedulaAsesor(),fechaActual:getFechaActual(),codReferido: getCodReferido()},
+                    data: {nroDocumentoAsesor:getNroDocumentoAsesor(),fechaActual:getFechaActual(),codReferido: getCodReferido()},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/ingresarTablaReferidos',
                     success: function (data) 
                     {     
@@ -1255,7 +1269,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {cedulaAsesor:getCedulaAsesor(),idCliente:getIdCliente(), 
+                    data: {nroDocumentoAsesor:getNroDocumentoAsesor(),idCliente:getIdCliente(), 
                         nombreCompleto:nombreCompleto},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/crearCredencialesVendedor',
                     success: function (data) 
@@ -1314,7 +1328,7 @@
                         //$.isLoading("hide");
                         $.each(data, function(i, reg){
                             $('#stipoDocumento').append($('<option>', {
-                                value: data[i].id_tipo_documento,
+                                value: data[i].tipo_documento,
                                 text: data[i].nombre_tipo_documento
                             }));
                         })
@@ -1322,6 +1336,73 @@
                         obtenerRoles();
                        
                         
+                    }
+                });
+            }
+
+            /*EVENTOS RELACIONADOS CON LA VALIDACION DEL TIPO DE DOCUMENTO*/
+            function asignarValidacionANroDocumento(target) {
+            /*RUC*/
+                if (target.val() == 'RUC')
+                {
+                    $('#iNroDocumentoAsesor').removeAttr('cedula');
+                    $('#iNroDocumentoAsesor').removeAttr('pasaporte');
+                    $('#iNroDocumentoAsesor').attr('digits', true);
+                    $('#iNroDocumentoAsesor').attr('maxlength', 13);
+                    $('#iNroDocumentoAsesor').attr('minlength', 13);
+                    $('#iNroDocumentoAsesor').attr('ruc', true);
+                }
+                /*REFUGIADO*/
+                if (target.val() == 'R')
+                {
+                    $('#iNroDocumentoAsesor').removeAttr('cedula');
+                    $('#iNroDocumentoAsesor').removeAttr('ruc');
+                    $('#iNroDocumentoAsesor').removeAttr('pasaporte');
+                    $('#iNroDocumentoAsesor').removeAttr('digits');
+                    $('#iNroDocumentoAsesor').removeAttr('minlength');
+                    $('#iNroDocumentoAsesor').attr('maxlength', 16);
+                }
+                /*PASAPORTE*/
+                if (target.val() == 'P')
+                {
+                    $('#iNroDocumentoAsesor').removeAttr('cedula');
+                    $('#iNroDocumentoAsesor').removeAttr('ruc');
+                    $('#iNroDocumentoAsesor').removeAttr('digits');
+                    $('#iNroDocumentoAsesor').attr('pasaporte', '^[A-Za-zÑñ]{1}[0-9]{6}$');
+                    $('#iNroDocumentoAsesor').attr('maxlength', 7);
+                    $('#iNroDocumentoAsesor').attr('minlength', 7);
+                }
+                /*CEDULA*/
+                if (target.val() == 'C')
+                {
+
+                    $('#iNroDocumentoAsesor').removeAttr('pasaporte');
+                    $('#iNroDocumentoAsesor').removeAttr('ruc');
+                    $('#iNroDocumentoAsesor').attr('cedula', true);
+                    $('#iNroDocumentoAsesor').attr('maxlength', 10);
+                    $('#iNroDocumentoAsesor').attr('minlength', 10);
+                    $('#iNroDocumentoAsesor').attr('digits', true);
+                }
+
+            }
+
+            //Metodo para buscar el Id del tipo de documento
+            function buscarIdTipoDocumento(){
+                $.isLoading({
+                    text: "Cargando",
+                    position: "overlay"
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    async:false,
+                    dataType: 'json',
+                    data: {tipoDocumento:getTipoDocumento()},
+                    url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/buscarIdTipoDocumento',
+                    success: function (data) 
+                    {     
+                        $.isLoading("hide");
+                        setIdTipoDocumento(data);
                     }
                 });
             }
@@ -1339,8 +1420,8 @@
                     obtenerCiudades(getProvincia());
                 });
 
-                $('#bCrearAsesor').click(function(){
-                    validarCedulaAsesor();
+                $('#bRegistrarAsesor').click(function(){
+                    validarNroDocumentoAsesor();
                 });
 
                 //Obtengo el tipo de contacto dependiendo del seleccionado
@@ -1358,14 +1439,36 @@
                 });
 
                 $('#bCancelarAsesor').click(function(){
-                    inicializarCampos();
+                    
+                    $('#ipNombreAsesor').val('');
+                    $('#isNombreAsesor').val('');
+                    $('#ipApellidoAsesor').val('');
+                    $('#isApellidoAsesor').val('');
+                    $('#ifNacimientoAsesor').mask('0000-00-00');
+                    $('#iNroDocumentoAsesor').val('');
+                    $('#itlfFijo').mask("00-000-0000", {placeholder: "00-000-0000"});
+                    $('#itlfCelular').mask("00-0000-0000", {placeholder: "00-0000-0000"});
+                    $('#sProvincia').val('');
+                    $('#iDireccion').val('');
+                    $('#ieMail').val('');
+                    $('#ireferido').val('');
+                    $('#ilider').val('');
+                    $('#stipoDocumento').val('');
+                    $("#rtipContactoMail").prop("checked", false);
+                    $("#rtipContactoTlf").prop("checked", false);
+                    $('#sCiudad').append($('<option>', {
+                        value: '',
+                        text: '-Seleccionar-'
+                    }));
+
                     $('#modalregistroAsesoraB').modal('hide');
                 })
 
+
                 //Validaciones numericas
-                $('#itlfFijo').keypress(function(key) {
+                /*$('#itlfFijo').keypress(function(key) {
                     if(key.charCode < 48 || key.charCode > 57) return false;
-                });
+                });*?
 
                 /*$('#itlfCelular').keydown(function(event) {
                     if(event.shiftKey)  {
@@ -1377,9 +1480,9 @@
                         }          
                     }
                 });*/
-                $('#itlfCelular').keypress(function(key) {
+                /*$('#itlfCelular').keypress(function(key) {
                     if(key.charCode < 48 || key.charCode > 57) return false;
-                });
+                });*/
 
                 //Validacion Referido y Lider
                 $('#ireferido').keypress(function(key) {
@@ -1389,6 +1492,15 @@
                 $('#ilider').keypress(function(key) {
                     if(key.charCode < 48 || key.charCode > 57) return false;
                 });
+
+                $('#stipoDocumento').change(function () {
+                    if (getTipoContacto() != ''){
+                        buscarIdTipoDocumento();
+                        asignarValidacionANroDocumento($(this));
+                }
+                
+            });
+
 
                 //Input textos
                /* $('#ipNombreAsesor').keypress(function(key) {

@@ -48,7 +48,7 @@ class RegistroAsesor_model extends CI_Model
 
     //Metodo para crear asesores de belleza
     public function registroAsesoresDeBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,
-    	$fechaNacimientoAsesor,$tipoDocumento,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider, $tipoContacto, $fechaActual){
+    	$fechaNacimientoAsesor,$tipoDocumento,$nroDocumentoAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider, $tipoContacto, $fechaActual){
 
         $rolVendedor = 2;
         //Validacion Telefono fijo
@@ -67,7 +67,7 @@ class RegistroAsesor_model extends CI_Model
     		'apellido_paterno' => $apellidoPAsesor,
     		'apellido_materno' => $apellidoMAsesor,
     		'fecha_nacimiento' => $fechaNacimientoAsesor,
-    		'nro_documento' => $cedulaAsesor,
+    		'nro_documento' => $nroDocumentoAsesor,
     		'tlf_fijo' => $tlfFijoAsesor,
     		'tlf_celular' => $tlfCelularAsesor,
     		'direccion' => $direccion,
@@ -88,11 +88,11 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para validar si la cedula existe
-    public function validarCedulaAsesor($cedulaAsesor){
+    public function validarnroDocumentoAsesor($nroDocumentoAsesor){
 
         $this->db->select('*');
         $this->db->from('tab_cliente');
-        $this->db->where('nro_documento='.$cedulaAsesor);
+        $this->db->where('nro_documento='.$nroDocumentoAsesor);
 
         $query = $this->db->get();
         $ds = $query->result_array();
@@ -143,11 +143,11 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Buscar Id de Cliente para inyectar en la tabla de referidos
-    public function buscarIdCliente($cedulaAsesor){
+    public function buscarIdCliente($nroDocumentoAsesor){
 
         $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
-        $this->db->where('nro_documento='.$cedulaAsesor);
+        $this->db->where('nro_documento='.$nroDocumentoAsesor);
 
         $query = $this->db->get();
         $ds = $query->row_array();
@@ -166,9 +166,9 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para ingresar en la tabla tab_referido
-    public function ingresarTablaReferidos($cedulaAsesor,$fechaActual,$codReferido){
+    public function ingresarTablaReferidos($nroDocumentoAsesor,$fechaActual,$codReferido){
 
-        $this->db->insert('tab_referido', array('nro_documento' => $cedulaAsesor,
+        $this->db->insert('tab_referido', array('nro_documento' => $nroDocumentoAsesor,
             'fecha_ingreso' => $fechaActual,
             'fk_id_cliente' => $codReferido));
 
@@ -197,12 +197,12 @@ class RegistroAsesor_model extends CI_Model
     }
 
     //Metodo para la creacion de credenciales para los vendedores
-    public function crearCredencialesVendedor($cedulaAsesor,$idCliente,$nombreCompleto){
+    public function crearCredencialesVendedor($nroDocumentoAsesor,$idCliente,$nombreCompleto){
 
-        $this->db->insert('admin_usuario', array('usuario' => $cedulaAsesor,
-            'clave' => md5($cedulaAsesor),
+        $this->db->insert('admin_usuario', array('usuario' => $nroDocumentoAsesor,
+            'clave' => md5($nroDocumentoAsesor),
             'nombre_completo' => $nombreCompleto,
-            'nro_documento' => $cedulaAsesor,
+            'nro_documento' => $nroDocumentoAsesor,
             'estado_habilitacion' => 1, //Los vendedores siempre inician habilitados (por eso valor 1)
             'fk_id_cliente' => $idCliente,
             'fk_id_rol' => 2)); //Rol 2: Vendedor
@@ -220,6 +220,28 @@ class RegistroAsesor_model extends CI_Model
         $ds = $query->result_array();
 
         return $ds;
+    }
+
+    //Metodo para buscar el Id del tipo de documento
+    public function buscarIdTipoDocumento($tipoDocumento){
+
+        $this->db->select('id_tipo_documento');
+        $this->db->from('tab_tipo_documento');
+        $this->db->where('tipo_documento', $tipoDocumento);
+
+        $query = $this->db->get();
+        $ds = $query->row_array();
+
+        if (count($ds)>0){
+
+            $id_tipo_documento = $ds['id_tipo_documento'];
+        }
+        else{
+
+            $id_tipo_documento = null;
+        }
+
+        return $id_tipo_documento;
     }
 
 }

@@ -34,10 +34,10 @@ class RegistroAsesor extends MX_Controller
     }
 
     //Metodo para validar la cedula
-    public function validarCedulaAsesor(){
+    public function validarNroDocumentoAsesor(){
 
-        $cedulaAsesor= trim($this->input->post('cedulaAsesor'));
-        $datos = $this->load->registroAsesor_model->validarCedulaAsesor($cedulaAsesor);
+        $nroDocumentoAsesor= trim($this->input->post('nroDocumentoAsesor'));
+        $datos = $this->load->registroAsesor_model->validarNroDocumentoAsesor($nroDocumentoAsesor);
         echo json_encode($datos);
     }
 
@@ -51,7 +51,7 @@ class RegistroAsesor extends MX_Controller
         $apellidoMAsesor=trim($this->input->post('apellidoMAsesor'));
         $fechaNacimientoAsesor=trim($this->input->post('fechaNacimientoAsesor'));
         $tipoDocumento=trim($this->input->post('tipoDocumento'));
-        $cedulaAsesor=trim($this->input->post('cedulaAsesor'));
+        $nroDocumentoAsesor=trim($this->input->post('nroDocumentoAsesor'));
         $tlfFijoAsesor=trim($this->input->post('tlfFijoAsesor'));
         $tlfCelularAsesor=trim($this->input->post('tlfCelularAsesor'));
         $idProvincia=trim($this->input->post('idProvincia'));
@@ -63,7 +63,7 @@ class RegistroAsesor extends MX_Controller
         $tipoContacto=trim($this->input->post('tipoContacto'));
         $fechaActual=trim($this->input->post('fechaActual'));
 
-        $datos = $this->registroAsesor_model->registroAsesoresDeBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,$fechaNacimientoAsesor,$tipoDocumento,$cedulaAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad, $direccion, $email,$referido,$lider, $tipoContacto, $fechaActual);
+        $datos = $this->registroAsesor_model->registroAsesoresDeBelleza($pNombreAsesor,$sNombreAsesor,$apellidoPAsesor,$apellidoMAsesor,$fechaNacimientoAsesor,$tipoDocumento,$nroDocumentoAsesor,$tlfFijoAsesor,$tlfCelularAsesor,$idProvincia,$idCiudad, $direccion, $email,$referido,$lider, $tipoContacto, $fechaActual);
         echo json_encode($datos);
     }
 
@@ -83,17 +83,17 @@ class RegistroAsesor extends MX_Controller
 
     //Buscar Id de Cliente para inyectar en la tabla de referidos
     public function buscarIdCliente(){
-        $cedulaAsesor= trim($this->input->post('cedulaAsesor'));
-        $datos = $this->load->registroAsesor_model->buscarIdCliente($cedulaAsesor);
+        $nroDocumentoAsesor= trim($this->input->post('nroDocumentoAsesor'));
+        $datos = $this->load->registroAsesor_model->buscarIdCliente($nroDocumentoAsesor);
         echo json_encode($datos);
     }
 
     //Metodo para ingresar en la tabla tab_referido
     public function ingresarTablaReferidos(){
-        $cedulaAsesor = trim($this->input->post('cedulaAsesor'));
+        $nroDocumentoAsesor = trim($this->input->post('nroDocumentoAsesor'));
         $fechaActual = trim($this->input->post('fechaActual'));
         $codReferido = trim($this->input->post('codReferido'));
-        $datos = $this->load->registroAsesor_model->ingresarTablaReferidos($cedulaAsesor,$fechaActual,$codReferido);
+        $datos = $this->load->registroAsesor_model->ingresarTablaReferidos($nroDocumentoAsesor,$fechaActual,$codReferido);
         echo json_encode($datos);
     }
 
@@ -106,10 +106,10 @@ class RegistroAsesor extends MX_Controller
 
     //Metodo para la creacion de credenciales para los vendedores
     public function crearCredencialesVendedor(){
-        $cedulaAsesor = trim($this->input->post('cedulaAsesor'));
+        $nroDocumentoAsesor = trim($this->input->post('nroDocumentoAsesor'));
         $idCliente = trim($this->input->post('idCliente'));
         $nombreCompleto = trim($this->input->post('nombreCompleto'));
-        $datos = $this->load->registroAsesor_model->crearCredencialesVendedor($cedulaAsesor,$idCliente, 
+        $datos = $this->load->registroAsesor_model->crearCredencialesVendedor($nroDocumentoAsesor,$idCliente, 
             $nombreCompleto);
         echo json_encode($datos);
     }
@@ -117,6 +117,13 @@ class RegistroAsesor extends MX_Controller
     //Metodo para cargar los tipos de documentos
     public function obtenerTipoDocumentos(){
         $datos = $this->load->registroAsesor_model->obtenerTipoDocumentos();
+        echo json_encode($datos);
+    }
+
+    //Metodo para buscar el Id del tipo de documento
+    public function buscarIdTipoDocumento(){
+        $tipoDocumento = trim($this->input->post('tipoDocumento'));
+        $datos = $this->load->registroAsesor_model->buscarIdTipoDocumento($tipoDocumento);
         echo json_encode($datos);
     }
 }

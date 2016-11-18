@@ -13,14 +13,20 @@ class RegistroLider extends MX_Controller
     //Metodo para mostrar la pantalla de registro de Lider
     public function mostrarFormularioRegistroLider(){
 
-		$idusuario=$this->session->userdata('loggeado')['ID_USUARIO'];
-        $usuario=$this->session->userdata('loggeado')['USUARIO'];
+        if($this->session->userdata('loggeado'))
+        {
 
-        $datos1=$this->rol_model->cabecera($idusuario);
-    	$this->load->view('templates/header', $datos1);
-        $this->load->view('formularioRegistroLider');
-        $this->load->view('templates/footer');
+    		$idusuario=$this->session->userdata('loggeado')['ID_USUARIO'];
+            $usuario=$this->session->userdata('loggeado')['USUARIO'];
 
+            $datos1=$this->rol_model->cabecera($idusuario);
+        	$this->load->view('templates/header', $datos1);
+            $this->load->view('formularioRegistroLider');
+            $this->load->view('templates/footer');
+        }
+        else{
+             redirect('admin/login', 'refresh');
+        }
     }
 
     //Metodo para cargar los tipos de documentos
@@ -47,9 +53,9 @@ class RegistroLider extends MX_Controller
     }
 
     //Metodo para validar la cedula
-    public function validarCedulaLider(){
-        $cedulaLider= trim($this->input->post('cedulaLider'));
-        $datos = $this->load->registrolider_model->validarCedulaLider($cedulaLider);
+    public function validarNroDocumentoLider(){
+        $nroDocumentoLider= trim($this->input->post('nroDocumentoLider'));
+        $datos = $this->load->registrolider_model->validarNroDocumentoLider($nroDocumentoLider);
         echo json_encode($datos);
     }
 
@@ -84,7 +90,7 @@ class RegistroLider extends MX_Controller
         $apellidoMLider=trim($this->input->post('apellidoMLider'));
         $fechaNacimientoLider=trim($this->input->post('fechaNacimientoLider'));
         $tipoDocumentoLider=trim($this->input->post('tipoDocumentoLider'));
-        $cedulaLider=trim($this->input->post('cedulaLider'));
+        $nroDocumentoLider=trim($this->input->post('nroDocumentoLider'));
         $tlfFijoLider=trim($this->input->post('tlfFijoLider'));
         $tlfCelularLider=trim($this->input->post('tlfCelularLider'));
         $idProvincia=trim($this->input->post('idProvincia'));
@@ -95,17 +101,45 @@ class RegistroLider extends MX_Controller
         $lider=trim($this->input->post('lider'));
         $fechaActual=trim($this->input->post('fechaActual'));
 
-        $datos = $this->registrolider_model->registroLider($pNombreLider,$sNombreLider,$apellidoPLider,$apellidoMLider,$fechaNacimientoLider,$tipoDocumentoLider,$cedulaLider,$tlfFijoLider,$tlfCelularLider,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider,$fechaActual);
+        $datos = $this->registrolider_model->registroLider($pNombreLider,$sNombreLider,$apellidoPLider,$apellidoMLider,$fechaNacimientoLider,$tipoDocumentoLider,$nroDocumentoLider,$tlfFijoLider,$tlfCelularLider,$idProvincia,$idCiudad,$direccion,$email,$referido,$lider,$fechaActual);
         echo json_encode($datos);
     }
 
     //Metodo para ingresar en la tabla tab_referido
     public function ingresarTablaReferidos(){
-        $cedulaLider = trim($this->input->post('cedulaLider'));
+        $nroDocumentoLider = trim($this->input->post('nroDocumentoLider'));
         $fechaActual = trim($this->input->post('fechaActual'));
         $codReferido = trim($this->input->post('codReferido'));
-        $datos = $this->load->registrolider_model->ingresarTablaReferidos($cedulaLider,$fechaActual,$codReferido);
+        $datos = $this->load->registrolider_model->ingresarTablaReferidos($nroDocumentoLider,$fechaActual,$codReferido);
         echo json_encode($datos);
+    }
+
+    //Metodo para buscar el Id del tipo de documento
+    public function buscarIdTipoDocumento(){
+        $tipoDocumento = trim($this->input->post('tipoDocumento'));
+        $datos = $this->load->registrolider_model->buscarIdTipoDocumento($tipoDocumento);
+        echo json_encode($datos);
+    }
+
+    //Metodo para mostrar la pantalla de Ingreso al sistema
+    public function mostrarIngresoSistema(){
+
+        if($this->session->userdata('loggeado'))
+        {
+            $idusuario=$this->session->userdata('loggeado')['ID_USUARIO'];
+            $usuario=$this->session->userdata('loggeado')['USUARIO'];
+
+            $datos1=$this->rol_model->cabecera($idusuario);
+            $this->load->view('templates/header', $datos1);
+            $this->load->view('admin/ingresoAlSistema');
+            $this->load->view('templates/footer');
+
+        }
+        else
+        {
+          redirect('admin/login', 'refresh');
+        }
+
     }
 }
 ?>
