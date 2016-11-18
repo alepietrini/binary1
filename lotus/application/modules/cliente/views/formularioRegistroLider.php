@@ -934,9 +934,6 @@
 
                                     $('#formRegistroLider').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
                                     $('#formRegistroLider').submit();
-
-                                	/*var url = "<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema";
-									window.open(url ,'_self');*/
                                 } 
                             }
                             else{  
@@ -985,6 +982,11 @@
                         $.isLoading("hide");
                        if (data == true){
                             var text = 'Lider Registrado correctamente';
+
+
+                            $('#formRegistroLider').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
+                            $('#formRegistroLider').submit();
+                        
                        }
                        else
                        {
