@@ -161,117 +161,117 @@
                     <col width="200px"/>
                 </colgroup>
 				<tbody>
-					<br>
-					<tr>
-                        <td></td>
-
-                        <td>
-                        	<label class="control-label required" for="for_pnombreLider"> PRIMER NOMBRE
-                            <span class="required"> * </span></label>
-                            <input id="ipNombreLider" class="form-control inputRegistro" type="text" name="ipNombreLider" maxlength="15">
-                        </td>
-                        <td></td>
-                        <td>
-                        	<label class="control-label required" for="for_snombreLider"> SEGUNDO NOMBRE
-                            </label>
-                            <input id="isNombreLider" class="form-control inputRegistro" type="text" name="isNombreLider" maxlength="15">
-                        </td>
-                        <td></td>
-                        <td>
-                        	<label class="control-label required" for="for_pApellidoLider"> PRIMER APELLIDO
-                            <span class="required"> * </span></label>
-                            <input id="ipApellidoLider" class="form-control inputRegistro" type="text" name="ipApellidoLider" maxlength="15">
-                        </td>
-                        <td></td>
-                        <td>
-                        	<label class="control-label required" for="for_sApellidoLider"> SEGUNDO APELLIDO
-                            </label>
-                            <input id="isApellidoLider" class="form-control inputRegistro" type="text" name="isApellidoLider" maxlength="15">
-                        </td>
-                    </tr>
+                    <br>
                     <tr>
-                    	<td></td>
-                    	<td>
-	                    	<label class="control-label required" for="for_fNacimientoLider">FECHA DE NACIMIENTO <span class="required"> * </span></label>
-	                    	<!--<span class="input-group-addon left">
-                            <span class="glyphicon glyphicon-calendar"></span></span>-->
-                            <input id="ifNacimientoLider" class="form-control dp"  placeholder="yyyy-mm-dd" type="text" name="ifNacimientoLider">
+                        <td></td>
+                        <td><label class="control-label required" for="for_pnombreLider"> PRIMER NOMBRE
+                            <span class="required"> * </span></label>
                         </td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_TipDocumentoLider">TIPO DE DOCUMENTO <span class="required"> * </span></label>
-                            <select id="stipoDocumentoLider" class="form-control">
+                        <td><label class="control-label required" for="for_snombreLider"> SEGUNDO NOMBRE
+                            </label>
+                        </td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_pApellidoLider"> PRIMER APELLIDO
+                            <span class="required"> * </span></label>
+                        </td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_sApellidoLider"> SEGUNDO APELLIDO
+                            </label>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td></td>
+                        <td><input id="ipNombreLider" class="form-control inputRegistro" type="text" name="ipNombreLider" maxlength="15">
+                        </td>
+                        <td></td>
+                        <td><input id="isNombreLider" class="form-control inputRegistro" type="text" name="isNombreLider" maxlength="15">
+                        </td>
+                        <td></td>
+                        <td><input id="ipApellidoLider" class="form-control inputRegistro" type="text" name="ipApellidoLider" maxlength="15">
+                        </td>
+                        <td></td>
+                        <td><input id="isApellidoLider" class="form-control inputRegistro" type="text" name="isApellidoLider" maxlength="15"></td>
+                    </tr>   
+                    <br>
+                    <tr>
+                        <td></td>
+                        <td><label class="control-label required" for="for_fNacimientoLider">FECHA DE NACIMIENTO <span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_TipDocumentoLider">TIPO DE DOCUMENTO <span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_CedulaLider">NÚMERO DE DOCUMENTO <span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_TlfFijoLider">TELÉFONO FIJO </label>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td></td>
+                        <td class='input-group'><span class="input-group-addon left">
+                            <span class="glyphicon glyphicon-calendar"></span></span>
+                            <input id="ifNacimientoLider" class="form-control dp"  placeholder="yyyy-mm-dd" type="text" name="ifNacimientoLider"></td>
+                        <td></td>
+                        <td><select id="stipoDocumentoLider" class="form-control">
                             </select>
                         </td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_CedulaLider">NÚMERO DE DOCUMENTO <span class="required"> * </span></label>
-                            <input id="icedulaLider" class="form-control inputRegistro" type="text" 
-                            name="icedulaLider" maxlength="10">
-                        </td>
+                        <td><input id="icedulaLider" class="form-control inputRegistro" type="text" 
+                            name="icedulaLider" maxlength="10"></td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_TlfFijoLider">TELÉFONO FIJO </label>
-                            <input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
-                            name="itlfFijo" maxlength="9">
-                        </td>
+                        <td><input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
+                            name="itlfFijo" maxlength="9"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_tlfCelularLider">CELULAR <span class="required"> * </span></label>
-                            <input id="itlfCelularLider" class="form-control inputRegistro" type="text" 
-                            name="itlfCelularLider" maxlength="10">
-                        </td>
+                        <td><label class="control-label required" for="for_tlfCelularLider">CELULAR <span class="required"> * </span></label></td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_paisLider">PAÍS </label>
-                            <input id="ipaisLider" class="form-control inputRegistro" type="text" 
-                    		name="ipaisLider" maxlength="10" value="Ecuador" disabled="disabled">                       
-	                    </td>
-	                    <td></td>
-	                    <td>
-	                        <label class="control-label required" for="for_provinciaLider">PROVINCIA <span class="required"> * </span></label>
-	                        <select id="sProvinciaLider" class="form-control">
-	                        </select>
-	                    </td>
-	                    <td></td>
-                        <td>
-                            <label class="control-label required" for="for_ciudadLider">CIUDAD <span class="required"> * </span></label>
-                            <select id="sCiudadLider" class="form-control">
-                            </select>
-                        </td>
-                    </tr>
+                        <td><label class="control-label required" for="for_paisLider">PAÍS </label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_provinciaLider">PROVINCIA <span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_ciudadLider">CIUDAD <span class="required"> * </span></label></td>
+                    </tr> 
                     <tr>
-                    	<td></td>
-                        <td>
-                            <label class="control-label required" for="for_DireccionLider">DIRECCIÓN <span class="required"> * </span></label>
-                            <input id="iDireccionLider" class="form-control inputRegistro" type="text" 
-                            name="iDireccionLider" maxlength="100">
-                        </td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_emailLider">E-Mail<span class="required"> * </span></label>
-                            <input id="ieMailLider" class="form-control inputRegistro" type="text" 
-                            name="ieMailLider" maxlength="50">
-                        </td>
+                        <td><input id="itlfCelularLider" class="form-control inputRegistro" type="text" 
+                            name="itlfCelularLider" maxlength="10"></td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_referidoLider">CÓDIGO DEL REFERIDO</label>
-                            <input id="ireferidoLider" class="form-control inputRegistro" type="text" 
-                            name="ireferidoLider" maxlength="5">
-                        </td>
+                        <td><input id="ipaisLider" class="form-control inputRegistro" type="text" 
+                            name="ipaisLider" maxlength="10" value="Ecuador" disabled="disabled"></td>
                         <td></td>
-                        <td>
-                            <label class="control-label required" for="for_LiderLiderr">CÓDIGO DEL LIDER 
-                            </label>
-                            <input id="iliderLider" class="form-control inputRegistro" type="text" 
-                            name="ilider" maxlength="5">
-                        </td>
-                    </tr>
-				</tbody>
+                        <td><select id="sProvinciaLider" class="form-control">
+                            </select></td>
+                        <td></td>
+                        <td><select id="sCiudadLider" class="form-control">
+                            </select></td>    
+                    </tr> 
+                    <tr>
+                        <td></td>
+                        <td><label class="control-label required" for="for_DireccionLider">DIRECCIÓN <span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_emailLider">E-Mail<span class="required"> * </span></label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_referidoLider">CÓDIGO DEL REFERIDO</label></td>
+                        <td></td>
+                        <td><label class="control-label required" for="for_LiderLiderr">CÓDIGO DEL LIDER 
+                            </label></td>
+                    </tr>  
+                    <tr>
+                        <td></td>
+                        <td><input id="iDireccionLider" class="form-control inputRegistro" type="text" 
+                            name="iDireccionLider" maxlength="100"></td>
+                        <td></td>
+                        <td><input id="ieMailLider" class="form-control inputRegistro" type="text" 
+                            name="ieMailLider" maxlength="50"></td>
+                        <td></td>
+                        <td><input id="ireferidoLider" class="form-control inputRegistro" type="text" 
+                            name="ireferidoLider" maxlength="5"></td>
+                        <td></td>
+                        <td><input id="iliderLider" class="form-control inputRegistro" type="text" 
+                            name="ilider" maxlength="5"></td>
+                    </tr>                  
+                </tbody>
 			</table>
-
 			
 		</div>
 		<br>
