@@ -68,37 +68,47 @@ class Registrolider_model extends CI_Model
     //Metodo para validar el codigo del referido
     public function validarReferidoIngresadoLider($codReferido){
 
-        $this->db->select('*');
+        $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
-        $this->db->where('id_cliente='.$codReferido);
+        $this->db->where('nro_documento='.$codReferido);
 
         $query = $this->db->get();
-        $ds = $query->result_array();
+        $ds = $query->row_array();
 
         if (count($ds)>0){
-            return true;
+
+            $id_referido = $ds['id_cliente'];
         }
         else{
-            return false;
+
+            $id_referido = null;
         }
+
+        return $id_referido;
+    
     }
 
     //Metodo para validar el codigo del Lider ingresado
     public function validarCodigoLiderIngresado($codLider){
-
-        $this->db->select('*');
+        
+        $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
-        $this->db->where('id_cliente='.$codLider);
+        $this->db->where('nro_documento='.$codLider);
+        $this->db->where('fk_id_rol',3);
 
         $query = $this->db->get();
-        $ds = $query->result_array();
+        $ds = $query->row_array();
 
         if (count($ds)>0){
-            return true;
+
+            $id_lider = $ds['id_cliente'];
         }
         else{
-            return false;
+
+            $id_lider = null;
         }
+
+        return $id_lider;
     }
 
     //Metodo para buscar quien es el super lider

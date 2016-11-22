@@ -178,13 +178,14 @@
         </div>
 
         <!--Registro de Belleza-->
-        <div class="modal fade" id="modalregistroAsesoraB" tabindex="-1" role="dialog" 
+        <form id="formRegistroB">
+            <div class="modal fade" id="modalregistroAsesoraB" tabindex="-1" role="dialog" 
             aria-labelledby="registroAsesoraBModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="registroAsesoraBModalLabel">Registro Asesora de Belleza</h4>
+                        <h4 class="modal-title" id="registroAsesoraBModalLabel">Registro Asesora de Belleza (Hombres y Mujeres mayores de 18 años)</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -243,7 +244,7 @@
                                         <td>
                                             <label class="control-label required" for="for_fNacimientoAsesor">Fecha de Nacimiento <span class="required"> * </span></label>
                                         </td>
-                                        <td class='input-group'>
+                                        <td  id="tdFechaNacimiento" class='input-group'>
                                        
                                             <span class="input-group-addon left">
                                             <span class="glyphicon glyphicon-calendar"></span></span>
@@ -270,7 +271,13 @@
                                         </td>
                                         <td>
                                             <input id="iNroDocumentoAsesor" class="form-control inputRegistro" type="text" 
-                                            name="iNroDocumentoAsesor">
+                                            name="iNroDocumentoAsesor"                                         <?php if(form_error('iNroDocumentoAsesor') != '' ){?>
+                                                aria-describedby="iNroDocumentoAsesor-error"
+                                            <?php } ?>
+                                                required="required" class="form-control"/> 
+
+  
+
                                         </td>
                                         <td></td>
                                     </tr>
@@ -358,7 +365,7 @@
                                         </td>
                                         <td>
                                             <input id="ireferido" class="form-control inputRegistro" type="text" 
-                                            name="ireferido" maxlength="5">
+                                            name="ireferido" maxlength="16"/>
                                         </td>
                                         <td></td>
                                     </tr>
@@ -370,7 +377,7 @@
                                         </td>
                                         <td>
                                             <input id="ilider" class="form-control inputRegistro" type="text" 
-                                            name="ilider" maxlength="5">
+                                            name="ilider" maxlength="16"/>
                                         </td>
                                         <td></td>
                                     </tr>
@@ -408,6 +415,9 @@
                 </div>
             </div>
         </div>
+            
+        </form>
+        
 
 
 <div style=" text-align:center; font-family:Verdana, Geneva, sans-serif; position:relative; top:25px; font-size:10px;">.:: BINARY ::. &copy; Todos los derechos reservados</div>
@@ -426,6 +436,8 @@
             var tipoContacto = null;
             var id_cliente = null;
             var id_tipo_documento = null;
+            var id_referido = null;
+            var id_lider = null;
 /*************************************88Metodos get y set***********************************************/
 
             //Primer Nombre
@@ -532,6 +544,20 @@
             function setIdTipoDocumento(valor){
                 id_tipo_documento = valor;
             }
+            //Id_referido
+            function getIdReferido(){
+                return id_referido;
+            }
+            function setIdReferido(valor){
+                id_referido = valor;
+            }
+            //Id_Lider
+            function getIdLider(){
+                return id_lider;
+            }
+            function setIdLider(valor){
+                id_lider = valor;
+            }
 
 
             //
@@ -560,18 +586,6 @@
                 $.notific8(text, params);
                 <?php } ?>
                   
-                  function chequearValidacionYEnviarFormulario() {
-
-                            var form = $("form[name=login]");
-                            form.validate();
-                            if (form.valid() == true)
-                            {
-                               
-                                form.submit();
-                            }
-
-                        }
-                        $("#enviar").click(chequearValidacionYEnviarFormulario);
                     
                 });
 
@@ -632,8 +646,26 @@
                     text: '-Seleccionar-'
                 }));
 
+                $('#formRegistroB')[0].reset();
+
                 obtenerTipoDocumentos();
                 
+
+            }
+
+            //Metodo que valida la existencia del nro de documento en Ecuador
+            function chequearValidacionesNroDocumentos() {
+
+                var form = $("#formRegistroB");
+                form.validate();
+                if (form.valid() == true)
+                {
+                   return true;
+                    //form.submit();
+                }
+                else{
+                    return false;
+                }
 
             }
 
@@ -762,7 +794,7 @@
                         superLider = idSuperLider;
                     }
                     else{
-                        superLider = getCodLider();
+                        superLider = getIdLider();
                     }
 
 
@@ -776,7 +808,7 @@
                             tipoDocumento:getIdTipoDocumento(),nroDocumentoAsesor:getNroDocumentoAsesor(), 
                             tlfFijoAsesor:getTlfFijoAsesor(), tlfCelularAsesor:getTlfCelularAsesor(), 
                             idProvincia:getProvincia(),idCiudad:getCiudad(), direccion:getDireccion(), 
-                            email:getEmailAsesor(), referido:getCodReferido(), lider:superLider, 
+                            email:getEmailAsesor(), referido:getIdReferido(), lider:superLider, 
                             tipoContacto:getTipoContacto(), fechaActual:getFechaActual()},
                          url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/registroAsesoresDeBelleza',
                          success: function (data) 
@@ -867,11 +899,19 @@
                     {     
                         $.isLoading("hide");
                         if (data == false){
-                            validarFormatoEmail();
+                            if (chequearValidacionesNroDocumentos() == true){
+                                validarFormatoEmail();
+                            }
+                            else{
+                                var text = 'Núnmero de documento inválido';
+                                $.notific8(text, params);
+                            }
+                            
+                            
                             //
                         }
                         else{
-                            var text = 'El número de cédula ingresado ya existe';
+                            var text = 'El número de documento ingresado ya existe';
                             $.notific8(text, params);
                         }
 
@@ -939,7 +979,8 @@
                     success: function (data) 
                     {     
                         $.isLoading("hide");
-                        if (data == true){
+                        if ((data != '') && (data != null) && (data != undefined)){
+                            setIdReferido(data);
                             if (getCodLider() != ''){
                                 validarLiderIngresado();
                             }
@@ -987,7 +1028,8 @@
                     success: function (data) 
                     {     
                         $.isLoading("hide");
-                        if (data == true){
+                        if ((data != '') && (data != null) && (data != undefined)){
+                            setIdLider(data);
                             if (validarCamposObligatorios()){
                                 if (getCodLider() == ''){
                                     buscarIdSuperLider('S');
@@ -1115,7 +1157,7 @@
                     {     
                         $.isLoading("hide");
                         if ((data != null) && (data != undefined) && (data != '')){
-                            setIdCliente(data); //Asihno el valor Id_cliente 
+                            setIdCliente(data); //Asigno el valor Id_cliente 
                             if (getCodReferido() != ''){
                                 ingresarTablaReferidos();
                             }
@@ -1159,7 +1201,7 @@
                     type: 'POST',
                     async:false,
                     dataType: 'json',
-                    data: {nroDocumentoAsesor:getNroDocumentoAsesor(),fechaActual:getFechaActual(),codReferido: getCodReferido()},
+                    data: {nroDocumentoAsesor:getNroDocumentoAsesor(),fechaActual:getFechaActual(),codReferido: getIdReferido()},
                     url: '<?php echo base_url(); ?>index.php/cliente/registroAsesor/ingresarTablaReferidos',
                     success: function (data) 
                     {     
@@ -1407,6 +1449,39 @@
                 });
             }
 
+            //Metodo para calcular Edad
+            function calcularEdad(){
+                fecha = new Date();
+
+                var arregloFechaNaci = getFechaNaciomientoAsesor().split('-');
+                //alert(parseInt(fecha.getFullYear() - arregloFechaNaci[0]));
+                if ((parseInt(fecha.getFullYear() - arregloFechaNaci[0])) <= 18){
+                    return false;
+                    if (parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) <= 0){
+                        if (parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) == 0){
+                            if (parseInt(fecha.day - arregloFechaNaci[2]) <= 0){
+                                return false;
+                            }
+                            else{
+                                return true;
+                            }
+                        }
+                        else if(parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) < 0){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                else{
+                    return true;
+                }
+            }
+
 
             //Carga de pantalla
             window.onload = function alcargar()
@@ -1420,8 +1495,28 @@
                     obtenerCiudades(getProvincia());
                 });
 
-                $('#bRegistrarAsesor').click(function(){
-                    validarNroDocumentoAsesor();
+                $('#bRegistrarAsesor').click(function(){   
+                    var params = {                
+                        onInit: function(data) {
+                        },
+                        onCreate: function(notification, data) {
+                        },
+                        onClose: function(notification, data) {
+                        }
+                    };
+
+                    params.heading = 'Notificación';
+                    params.theme = 'teal';
+                    params.life = '2000';
+
+                    if (calcularEdad()){
+                        validarNroDocumentoAsesor();
+                    }  
+                    else{
+                        var text = 'Los asesores deben ser mayores de 18 años';
+                        $.notific8(text, params);
+                    }
+                    //
                 });
 
                 //Obtengo el tipo de contacto dependiendo del seleccionado
@@ -1461,6 +1556,8 @@
                         text: '-Seleccionar-'
                     }));
 
+                    $('#formRegistroB')[0].reset();
+
                     $('#modalregistroAsesoraB').modal('hide');
                 })
 
@@ -1485,13 +1582,25 @@
                 });*/
 
                 //Validacion Referido y Lider
-                $('#ireferido').keypress(function(key) {
-                    if(key.charCode < 48 || key.charCode > 57) return false;
+                /*$('#ireferido').keypress(function(key) {
+                    //alert(key.charCode);
+                    if((key.charCode < 48) && (key.charCode != 0)){
+                        return false;
+                    } 
+                    if (key.charCode > 57){
+                        return false;
+                    } 
                 });
 
                 $('#ilider').keypress(function(key) {
-                    if(key.charCode < 48 || key.charCode > 57) return false;
-                });
+                    //alert(key.charCode);
+                    if((key.charCode < 48) && (key.charCode != 0)){
+                        return false;
+                    } 
+                    if (key.charCode > 57){
+                        return false;
+                    } 
+                });*/
 
                 $('#stipoDocumento').change(function () {
                     if (getTipoContacto() != ''){

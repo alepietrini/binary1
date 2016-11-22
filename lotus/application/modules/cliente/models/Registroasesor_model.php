@@ -76,7 +76,7 @@ class RegistroAsesor_model extends CI_Model
     		'fecha_ingreso' => $fechaActual,
     		'fk_id_provincia' => $idProvincia,
     		'fk_id_canton' => $idCiudad,
-    		'fk_id_vendedor' => $referido,
+    		'fk_id_referido' => $referido,
     		'fk_id_rol' => $rolVendedor,
     		'fk_id_lider' => $lider,
             'fk_id_tipoDocumento' => $tipoDocumento,
@@ -108,38 +108,46 @@ class RegistroAsesor_model extends CI_Model
     //Metodo para validar el codigo del referido
     public function validarReferidoIngresado($codReferido){
 
-        $this->db->select('*');
+        $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
-        $this->db->where('id_cliente='.$codReferido);
+        $this->db->where('nro_documento='.$codReferido);
 
         $query = $this->db->get();
-        $ds = $query->result_array();
+        $ds = $query->row_array();
 
         if (count($ds)>0){
-            return true;
+
+            $id_referido = $ds['id_cliente'];
         }
         else{
-            return false;
+
+            $id_referido = null;
         }
+
+        return $id_referido;
     }
 
     //Metodo para validar el codigo del Lider ingresado
     public function validarLiderIngresado($codLider){
 
-        $this->db->select('*');
+        $this->db->select('id_cliente');
         $this->db->from('tab_cliente');
-        $this->db->where('id_cliente='.$codLider);
+        $this->db->where('nro_documento='.$codLider);
         $this->db->where('fk_id_rol',3);
 
         $query = $this->db->get();
-        $ds = $query->result_array();
+        $ds = $query->row_array();
 
         if (count($ds)>0){
-            return true;
+
+            $id_lider = $ds['id_cliente'];
         }
         else{
-            return false;
+
+            $id_lider = null;
         }
+
+        return $id_lider;
     }
 
     //Buscar Id de Cliente para inyectar en la tabla de referidos

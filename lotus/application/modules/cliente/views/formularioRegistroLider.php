@@ -218,7 +218,8 @@
                         </td>
                         <td></td>
                         <td><input id="iNroDocumentoLider" class="form-control inputRegistro" type="text" 
-                            name="iNroDocumentoLider"></td>
+                            name="iNroDocumentoLider"
+                            /></td>
                         <td></td>
                         <td><input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
                             name="itlfFijo" maxlength="9"></td>
@@ -397,6 +398,20 @@
         function setIdTipoDocumento(valor){
             id_tipo_documento = valor;
         }
+        //Id_referido
+        function getIdReferido(){
+            return id_referido;
+        }
+        function setIdReferido(valor){
+            id_referido = valor;
+        }
+        //Id_Lider
+        function getIdLider(){
+            return id_lider;
+        }
+        function setIdLider(valor){
+            id_lider = valor;
+        }
 
 	    //Carga de pantalla
 	    window.onload = function alcargar()
@@ -409,7 +424,27 @@
 	        });
 
 	        $('#bRegistrarLider').click(function(){
-	            validarNroDocumentoLider();
+                var params = {                
+                    onInit: function(data) {
+                    },
+                    onCreate: function(notification, data) {
+                    },
+                    onClose: function(notification, data) {
+                    }
+                };
+
+                params.heading = 'Notificación';
+                params.theme = 'teal';
+                params.life = '2000';
+
+                if (calcularEdad()){
+                    validarNroDocumentoLider();
+                }
+                else{
+                    var text = 'Los asesores deben ser mayores de 18 años';
+                    $.notific8(text, params);
+                }
+	            
 	        });
 
 	        //Validaciones numericas
@@ -432,13 +467,13 @@
 	        });*/
 
 	        //Validacion Referido y Lider
-	        $('#ireferidoLider').keypress(function(key) {
+	        /*$('#ireferidoLider').keypress(function(key) {
 	            if(key.charCode < 48 || key.charCode > 57) return false;
 	        });
 
 	        $('#iliderLider').keypress(function(key) {
 	            if(key.charCode < 48 || key.charCode > 57) return false;
-	        });
+	        });*/
 
 	        //Input textos
 	       /* $('#ipNombreAsesor').keypress(function(key) {
@@ -490,6 +525,7 @@
                 text: '-SELECCIONAR-'
             }));
 
+            $('#formRegistroLider')[0].reset();
 	        obtenerTipoDocumentosLider();
 	    }
 
@@ -640,7 +676,14 @@
                     {     
                         $.isLoading("hide");
                         if (data == false){
-                            validarFormatoEmailLider();
+                            if (chequearValidacionesNroDocumentos()){
+                                validarFormatoEmailLider();
+                            }
+                            else{
+                                var text = 'Núnmero de documento inválido';
+                                $.notific8(text, params);
+                            }
+                            
                             //
                         }
                         else{
@@ -728,7 +771,8 @@
                     success: function (data) 
                     {     
                         $.isLoading("hide");
-                        if (data == true){
+                        if ((data != '') && (data != null) && (data != undefined)){
+                            setIdReferido(data)
                         	if (getCodLiderLider() != ''){
                         		validarCodigoLiderIngresado();
                         	}
@@ -776,7 +820,8 @@
                     success: function (data) 
                     {     
                         $.isLoading("hide");
-                        if (data == true){
+                        if ((data != '') && (data != null) && (data != undefined)){
+                            setIdLider(data);
                             if (validarCamposObligatoriosLider()){
                                 if (getCodLiderLider() == ''){
                                     buscarIdSuperLider('S');
@@ -902,7 +947,7 @@
                         superLider = idSuperLider;
                     }
                     else{
-                        superLider = getCodLiderLider();
+                        superLider = getIdLider();
                     }
 
 
@@ -916,7 +961,7 @@
                             tipoDocumentoLider:getTipoDocumentoLider(),nroDocumentoLider:getIdTipoDocumento(), 
                             tlfFijoLider:getTlfFijoLider(), tlfCelularLider:getTlfCelularLider(), 
                             idProvincia:getProvinciaLider(),idCiudad:getCiudadLider(), 
-                            direccion:getDireccionLider(), email:getEmailLider(), referido:getCodReferidoLider(), lider:superLider, fechaActual:getFechaActual()},
+                            direccion:getDireccionLider(), email:getEmailLider(), referido:getIdReferido(), lider:superLider, fechaActual:getFechaActual()},
                          url: '<?php echo base_url(); ?>index.php/cliente/registroLider/registroLider',
                          success: function (data) 
                          {     
@@ -1066,7 +1111,54 @@
         });
     }
 
-    //Pagina de ingreso al sistema
+    //Metodo que valida la existencia del nro de documento en Ecuador
+    function chequearValidacionesNroDocumentos() {
+
+        var form = $("#formRegistroLider");
+        form.validate();
+        if (form.valid() == true)
+        {
+           return true;
+            //form.submit();
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    //Metodo para calcular Edad
+    function calcularEdad(){
+        fecha = new Date();
+
+        var arregloFechaNaci = getFechaNaciomientoAsesor().split('-');
+        //alert(parseInt(fecha.getFullYear() - arregloFechaNaci[0]));
+        if ((parseInt(fecha.getFullYear() - arregloFechaNaci[0])) <= 18){
+            return false;
+            if (parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) <= 0){
+                if (parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) == 0){
+                    if (parseInt(fecha.day - arregloFechaNaci[2]) <= 0){
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                else if(parseInt((fecha.getMonth()+1) - arregloFechaNaci[1]) < 0){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return true;
+        }
+    }
 
    //asignarValidacionANroDocumento($('#iNroDocumentoLider'));
 	</script>
