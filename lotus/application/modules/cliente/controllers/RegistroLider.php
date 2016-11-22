@@ -4,7 +4,7 @@ class RegistroLider extends MX_Controller
     public function __construct() 
     {
         parent::__construct();
-        //$this->load->model('academico_model');
+
         $this->load->model('admin/rol_model');
         $this->load->model('cliente/registrolider_model');
 
@@ -120,6 +120,21 @@ class RegistroLider extends MX_Controller
         $datos = $this->load->registrolider_model->buscarIdTipoDocumento($tipoDocumento);
         echo json_encode($datos);
     }
+
+    //Metodo para ingresar a los lideres segun sus generaciones
+    public function ingresarTablaLiderGeneracion(){
+        $idLider = trim($this->input->post('idLider'));
+        $datos = $this->load->registrolider_model->ingresarTablaLiderGeneracion($idLider);
+        echo json_encode($datos);
+
+    }
+
+    //Metodo parea buscar si el lider pertenece a la cuarta generacion
+   public function buscarLider4taGeneracion($idLider){
+        $idLider = trim($this->input->post('idLider'));
+        $datos = $this->load->registrolider_model->buscarLider4taGeneracion($idLider);
+        echo json_encode($datos);
+   }
 
     //Metodo para mostrar la pantalla de Ingreso al sistema
     public function mostrarIngresoSistema(){

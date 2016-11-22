@@ -162,7 +162,7 @@ class Registrolider_model extends CI_Model
     		'fecha_ingreso' => $fechaActual,
     		'fk_id_provincia' => $idProvincia,
     		'fk_id_canton' => $idCiudad,
-    		'fk_id_vendedor' => $referido,
+    		'fk_id_referido' => $referido,
     		'fk_id_rol' => $rolLider,
     		'fk_id_lider' => $lider,
             'fk_id_tipoDocumento' => $tipoDocumentoLider,
@@ -204,5 +204,37 @@ class Registrolider_model extends CI_Model
 
         return $id_tipo_documento;
     }
+
+    //Metodo para ingresar a los lideres segun sus generaciones
+    public function ingresarTablaLiderGeneracion($idLider){
+
+        $this->db->insert('tab_lider_generacion', array('lider_1G' => $idLider,
+            'lider_2G' => NULL,
+            'lider_3G' => NULL,
+            'lider_4G' => NULL,
+            'lider_5G' => NULL
+            ));
+
+        return true;
+    }
+
+   //Metodo parea buscar si el lider pertenece a la cuarta generacion
+   public function buscarLider4taGeneracion($idLider){
+
+        $this->db->select('*');
+        $this->db->from('tab_lider_generacion');
+        $this->db->where('lider_4G', $idLider);
+
+        $query = $this->db->get();
+        $ds = $query->result_array();
+
+        if (count($ds)>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+   }
 }
 ?>

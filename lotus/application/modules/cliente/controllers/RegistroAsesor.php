@@ -4,7 +4,8 @@ class RegistroAsesor extends MX_Controller
     public function __construct() 
     {
         parent::__construct();
-        //$this->load->model('academico_model');
+        
+        $this->load->model('admin/rol_model');
         $this->load->model('cliente/registroAsesor_model');
     }
 
@@ -125,6 +126,25 @@ class RegistroAsesor extends MX_Controller
         $tipoDocumento = trim($this->input->post('tipoDocumento'));
         $datos = $this->load->registroAsesor_model->buscarIdTipoDocumento($tipoDocumento);
         echo json_encode($datos);
+    }
+
+    //Metodo para mostrar la pantalla de registro de Asesores internamente en el sistema
+    public function mostrarFormularioRegistroAsesor(){
+
+        if($this->session->userdata('loggeado'))
+        {
+
+            $idusuario=$this->session->userdata('loggeado')['ID_USUARIO'];
+            $usuario=$this->session->userdata('loggeado')['USUARIO'];
+
+            $datos1=$this->rol_model->cabecera($idusuario);
+            $this->load->view('templates/header', $datos1);
+            $this->load->view('formularioRegistroAsesor');
+            $this->load->view('templates/footer');
+        }
+        else{
+             redirect('admin/login', 'refresh');
+        }
     }
 }
 ?>

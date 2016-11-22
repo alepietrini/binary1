@@ -1,13 +1,11 @@
-<title>Lideres</title>
+<title>Creación de Lideres</title>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+
 
         <!--<link rel="icon" href="<?= base_url('assets/librerias/images/favicon.png') ?>" type="image/gif">-->
 
@@ -123,7 +121,7 @@
             
         </style>
 
-        <script src="<?= base_url('assets/librerias/js/jquery-ui.min.js') ?>" type="text/javascript"></script>
+   <script src="<?= base_url('assets/librerias/js/jquery-ui.min.js') ?>" type="text/javascript"></script>
         <script src="<?= base_url('assets/librerias/js/bootstrap.min.js') ?>" type="text/javascript"></script>
         <script src="<?= base_url('assets/librerias/js/jquery.isloading.min.js') ?>" type="text/javascript"></script>
         <script src="<?= base_url('assets/librerias/js/jquery.validate.min.js') ?>" type="text/javascript"></script>
@@ -140,13 +138,13 @@
         <script src="<?= base_url('assets/librerias/js/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
        
     </head>
-</head>
+
 <body>
 
 </body>
 
 
-<form name="formRegistroLider" method="post" action="" enctype="multipart/form-data" id="formRegistroLider">
+<form id="formRegistroLider">
 	<div class="image-fondo-lotus">
 		<div>
 			<table>
@@ -222,7 +220,7 @@
                             /></td>
                         <td></td>
                         <td><input id="itlfFijoLider" class="form-control inputRegistro" type="text" 
-                            name="itlfFijo" maxlength="9"></td>
+                            name="itlfFijo" maxlength="12"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -237,7 +235,7 @@
                     <tr>
                         <td></td>
                         <td><input id="itlfCelularLider" class="form-control inputRegistro" type="text" 
-                            name="itlfCelularLider" maxlength="10"></td>
+                            name="itlfCelularLider" maxlength="12"></td>
                         <td></td>
                         <td><input id="ipaisLider" class="form-control inputRegistro" type="text" 
                             name="ipaisLider" maxlength="10" value="Ecuador" disabled="disabled"></td>
@@ -306,6 +304,8 @@
 
 	    /***************************************DECLARACION DE VARIABLES**************************************/
 	    var valProvincia = null;
+        var id_referido = null;
+        var id_lider = null;
 	    /***************************************GETTER Y SETTER***********************************************/
         //Primer Nombre
         function getpNombreLider(){
@@ -413,6 +413,54 @@
             id_lider = valor;
         }
 
+                    //
+            $(function(){            
+            var params = {
+                
+                onInit: function(data) {
+                },
+                onCreate: function(notification, data) {
+                },
+                onClose: function(notification, data) {
+                }
+                };
+               <?php if(isset($mostrarMensajeConfirmacion)) {?>
+                var text = 'La operación ha sido realizada con éxito.';
+                params.heading = 'Confirmación';
+                params.theme = 'lime';
+                // show notification
+                $.notific8(text, params);
+                <?php } ?>
+                <?php if(isset($mostrarMensajeErrorValidacion)) {?>
+                var text = 'Hay algunos campos de entrada con errores. Por favor rectífiquelos.';
+                params.heading = 'Error';
+                params.theme = 'ruby';
+                // show notification
+                $.notific8(text, params);
+                <?php } ?>
+                  
+                    
+                });
+
+                        function getSize() 
+            {
+              var myWidth = 0, myHeight = 0;
+              if( typeof( window.innerWidth ) == 'number' ) {
+                //No-IE
+                myWidth = window.innerWidth;
+                myHeight = window.innerHeight;
+              } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                //IE 6+
+                myWidth = document.documentElement.clientWidth;
+                myHeight = document.documentElement.clientHeight;
+              } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                //IE 4 compatible
+                myWidth = document.body.clientWidth;
+                myHeight = document.body.clientHeight;
+              }
+              return myWidth;
+            } 
+
 	    //Carga de pantalla
 	    window.onload = function alcargar()
 	    {
@@ -441,7 +489,7 @@
                     validarNroDocumentoLider();
                 }
                 else{
-                    var text = 'Los asesores deben ser mayores de 18 años';
+                    var text = 'Los Lideres deben ser mayores de 18 años';
                     $.notific8(text, params);
                 }
 	            
@@ -973,12 +1021,9 @@
                                 	ingresarTablaReferidos();
                                 }
                                 else{
-                                	var text = 'Lider Registrado correctamente';
-                                	// show notification
-                                	$.notific8(text, params);
-
-                                    $('#formRegistroLider').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
-                                    $('#formRegistroLider').submit();
+                                    if (getCodLiderLider() == ''){
+                                        ingresarTablaLiderGeneracion(superLider);
+                                    }
                                 } 
                             }
                             else{  
@@ -1131,7 +1176,7 @@
     function calcularEdad(){
         fecha = new Date();
 
-        var arregloFechaNaci = getFechaNaciomientoAsesor().split('-');
+        var arregloFechaNaci = getFechaNaciomientoLider().split('-');
         //alert(parseInt(fecha.getFullYear() - arregloFechaNaci[0]));
         if ((parseInt(fecha.getFullYear() - arregloFechaNaci[0])) <= 18){
             return false;
@@ -1160,7 +1205,76 @@
         }
     }
 
-   //asignarValidacionANroDocumento($('#iNroDocumentoLider'));
+    //Metodo para ingresar a los lideres segun sus generaciones
+    function ingresarTablaLiderGeneracion(idLider){
+
+        $.isLoading({
+            text: "Cargando",
+            position: "overlay"
+        });
+
+                    //Mensajes de notioficacion
+        var superLider = null;
+        var params = {                
+            onInit: function(data) {
+            },
+            onCreate: function(notification, data) {
+            },
+            onClose: function(notification, data) {
+            }
+        };
+
+        params.heading = 'Notificación';
+        params.theme = 'teal';
+        params.life = '2000';
+
+        $.ajax({
+            type: 'POST',
+            async:false,
+            dataType: 'json',
+            data: {idLider:idLider},
+            url: '<?php echo base_url(); ?>index.php/cliente/registroLider/ingresarTablaLiderGeneracion',
+            success: function (data) 
+            {     
+                $.isLoading("hide");
+                if (data == true){
+                    // show notification
+                    var text = 'Lider Registrado correctamente';
+
+                    $('#formRegistroLider').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
+                    $('#formRegistroLider').submit();
+                }
+                else{
+                     var text = 'Se presento un problema al registrar al Lider';
+                }
+                $.notific8(text, params);
+               
+            }
+        });
+
+    }
+
+   //Metodo parea buscar si el lider pertenece a la cuarta generacion
+   function buscarLider4taGeneracion(idLider){
+
+            $.isLoading({
+            text: "Cargando",
+            position: "overlay"
+        });
+
+        $.ajax({
+            type: 'POST',
+            async:false,
+            dataType: 'json',
+            data: {idLider:idLider},
+            url: '<?php echo base_url(); ?>index.php/cliente/registroLider/buscarLider4taGeneracion',
+            success: function (data) 
+            {     
+                $.isLoading("hide");
+                alert('ingreso');
+            }
+        });
+   }
 	</script>
 </html>
 
