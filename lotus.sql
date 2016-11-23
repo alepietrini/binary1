@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-11-18 15:52:52
+Date: 2016-11-23 12:01:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,12 +24,13 @@ CREATE TABLE `admin_funcionalidad` (
   `funcionalidad` varchar(255) NOT NULL,
   `ruta` varchar(255) NOT NULL,
   PRIMARY KEY (`id_funcionalidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of admin_funcionalidad
 -- ----------------------------
-INSERT INTO `admin_funcionalidad` VALUES ('1', 'Creacion de Lideres', 'index.php/cliente/registroLider/mostrarFormularioRegistroLider');
+INSERT INTO `admin_funcionalidad` VALUES ('1', 'Creación de Lideres', 'index.php/cliente/registroLider/mostrarFormularioRegistroLider');
+INSERT INTO `admin_funcionalidad` VALUES ('2', 'Creación de Asesores', 'index.php/cliente/registroAsesor/mostrarFormularioRegistroAsesor');
 
 -- ----------------------------
 -- Table structure for admin_modulo
@@ -90,9 +91,9 @@ CREATE TABLE `admin_rol_modulo_funcionalidad` (
 -- Records of admin_rol_modulo_funcionalidad
 -- ----------------------------
 INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('1', '1', '1', '1');
-INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('2', '1', '2', '1');
-INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('3', '1', '3', '1');
-INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('4', '1', '4', '1');
+INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('2', '1', '1', '2');
+INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('3', '1', '2', '1');
+INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('4', '1', '3', '1');
 INSERT INTO `admin_rol_modulo_funcionalidad` VALUES ('5', '1', '5', '1');
 
 -- ----------------------------
@@ -113,7 +114,7 @@ CREATE TABLE `admin_usuario` (
   KEY `fk_id_rol_usuario` (`fk_id_rol`),
   CONSTRAINT `fk_id_cliente_usuario` FOREIGN KEY (`fk_id_cliente`) REFERENCES `tab_cliente` (`id_cliente`),
   CONSTRAINT `fk_id_rol_usuario` FOREIGN KEY (`fk_id_rol`) REFERENCES `admin_rol` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of admin_usuario
@@ -129,6 +130,14 @@ INSERT INTO `admin_usuario` VALUES ('15', '1669613935', '035f5af572228ad7d14298f
 INSERT INTO `admin_usuario` VALUES ('16', '1669613936', 'e32733f6fc30ee64492211667758cea1', 'prueba36 prueba36 prueba36 prueba36', '1669613936', '1', '52', '2');
 INSERT INTO `admin_usuario` VALUES ('17', '1669613937', '2ecd922bffaac31fff5b822e93174b68', 'prueba37 prueba37 prueba37 prueba37', '1669613937', '1', '53', '2');
 INSERT INTO `admin_usuario` VALUES ('18', '6666666', 'd5ee2eedfcf7adc285db4967bd86910d', 'prueba38 prueba38 prueba38 prueba38', '6666666', '1', '54', '2');
+INSERT INTO `admin_usuario` VALUES ('19', '1713647269', '32d2cbf6a2d5073785d706eda422d09b', 'sfrawerf seferf sefewf sefewrf', '1713647269', '1', '60', '2');
+INSERT INTO `admin_usuario` VALUES ('20', '1724544141', '85a42c68a1735af7a5c7040c8f867f0c', 'prueba51 prueba51 prueba51 prueba51', '1724544141', '1', '61', '2');
+INSERT INTO `admin_usuario` VALUES ('21', '1728682608', '5fa55f9e6f3c856417fd279e4607f974', 'prueba53 prueba53 prueba53 prueba53', '1728682608', '1', '64', '2');
+INSERT INTO `admin_usuario` VALUES ('22', '1726449513', '35105b81bb34b6e959d292119dfdc810', 'prueba54 prueba54 prueba54 prueba54', '1726449513', '1', '65', '2');
+INSERT INTO `admin_usuario` VALUES ('23', '1726095688', '97eb414addf6af6b78666097b1c56747', 'ASESOR1 ASESOR1 ASESOR1 ASESOR1', '1726095688', '1', '79', '2');
+INSERT INTO `admin_usuario` VALUES ('24', '1312994997', '60abec421ce3ba528dcd4953e82c5b28', 'ASESOR2 ASESOR2 ASESOR2 ASESOR2', '1312994997', '1', '80', '2');
+INSERT INTO `admin_usuario` VALUES ('25', '1750343111', 'f88816153ea1241378e1025c17093c9b', 'ASESOR3 ASESOR3 ASESOR3 ASESOR3', '1750343111', '1', '81', '2');
+INSERT INTO `admin_usuario` VALUES ('26', '1726189762', '638d43ddcfef9b90abd88f9af77c9ec8', 'ASESOR4 ASESOR4 ASESOR4 ASESOR4', '1726189762', '1', '82', '2');
 
 -- ----------------------------
 -- Table structure for tab_canton
@@ -395,7 +404,7 @@ CREATE TABLE `tab_cliente` (
   `nro_documento` varchar(255) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `tlf_fijo` varchar(11) DEFAULT NULL,
-  `tlf_celular` varchar(11) NOT NULL,
+  `tlf_celular` varchar(12) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `tipoContacto` varchar(1) DEFAULT NULL,
@@ -403,7 +412,7 @@ CREATE TABLE `tab_cliente` (
   `super_lider` varchar(1) NOT NULL,
   `fk_id_provincia` int(11) NOT NULL,
   `fk_id_canton` int(11) NOT NULL,
-  `fk_id_vendedor` int(11) DEFAULT NULL,
+  `fk_id_referido` int(11) DEFAULT NULL,
   `fk_id_rol` int(11) NOT NULL,
   `fk_id_lider` int(11) DEFAULT NULL,
   `fk_id_tipoDocumento` int(11) NOT NULL,
@@ -411,15 +420,16 @@ CREATE TABLE `tab_cliente` (
   KEY `fk_id_provincia_cliente` (`fk_id_provincia`),
   KEY `fk_id_rol_cliente` (`fk_id_rol`),
   KEY `fk_id_canton_cliente` (`fk_id_canton`),
-  KEY `fk_vendedor_cliente` (`fk_id_vendedor`),
+  KEY `fk_vendedor_cliente` (`fk_id_referido`),
   KEY `fk_id_lider_cliente` (`fk_id_lider`),
   KEY `fk_id_tipoDocumento` (`fk_id_tipoDocumento`),
+  KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `fk_id_canton_cliente` FOREIGN KEY (`fk_id_canton`) REFERENCES `tab_canton` (`id_canton`),
   CONSTRAINT `fk_id_lider_cliente` FOREIGN KEY (`fk_id_lider`) REFERENCES `tab_cliente` (`id_cliente`),
   CONSTRAINT `fk_id_provincia_cliente` FOREIGN KEY (`fk_id_provincia`) REFERENCES `tab_provincia` (`id_provincia`),
   CONSTRAINT `fk_id_rol_cliente` FOREIGN KEY (`fk_id_rol`) REFERENCES `admin_rol` (`id_rol`),
-  CONSTRAINT `fk_vendedor_cliente` FOREIGN KEY (`fk_id_vendedor`) REFERENCES `tab_cliente` (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_vendedor_cliente` FOREIGN KEY (`fk_id_referido`) REFERENCES `tab_cliente` (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tab_cliente
@@ -466,6 +476,28 @@ INSERT INTO `tab_cliente` VALUES ('56', 'PRUEBA40', 'PRUEBA40', 'PRUEBA40', 'PRU
 INSERT INTO `tab_cliente` VALUES ('57', 'PRUEBA41', 'PRUEBA41', 'PRUEBA41', 'PRUWBA41', '1', '1990-06-27', '00-000-0000', '00-0000-000', 'DFSEF', 'v@m.com', null, '2016-11-18', 'N', '3', '24', null, '3', '16', '0');
 INSERT INTO `tab_cliente` VALUES ('58', 'PRUEBA42', 'PRUEBA42', 'PRUEBA42', 'PRUEBA42', '2', '1990-06-28', '00-000-0000', '00-0000-000', 'FSDF', 's@a.com', null, '2016-11-18', 'N', '6', '49', null, '3', '16', '0');
 INSERT INTO `tab_cliente` VALUES ('59', 'PRUEBA43', 'PRUEBA43', 'PRUEBA43', 'PRUEBA43', '1', '1990-06-29', '00-000-0000', '00-0000-000', 'DFVDGF', 's@d.com', null, '2016-11-18', 'N', '4', '32', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('60', 'sfrawerf', 'seferf', 'sefewf', 'sefewrf', '1713647269', '2016-11-23', '00-000-0000', '00-0000-000', 'fghjtyj', '', '2', '2016-11-21', 'N', '17', '177', null, '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('61', 'prueba51', 'prueba51', 'prueba51', 'prueba51', '1724544141', '1994-06-08', '00-000-0000', '00-0000-0000', 'vfsdf', '', '2', '2016-11-21', 'N', '1', '5', null, '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('63', 'prueba52', 'prueba52', 'prueba52', 'prueba52', '1725375073', '1991-03-06', '00-000-0000', '00-0000-0000', 'fgdg', 'aa@aa.com', '1', '2016-11-21', 'N', '10', '83', '61', '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('64', 'prueba53', 'prueba53', 'prueba53', 'prueba53', '1728682608', '1990-06-12', '00-000-0000', '00-0000-0000', 'edfawer', '', '2', '2016-11-21', 'N', '4', '34', '61', '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('65', 'prueba54', 'prueba54', 'prueba54', 'prueba54', '1726449513', '1990-02-07', '00-000-0000', '00-0000-0000', 'fdgdxr', '', '2', '2016-11-21', 'N', '7', '57', null, '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('66', 'PRUEBA54', 'PRUEBA54', 'PRUEBA54', 'PRUEBA54', '1', '1990-07-19', '00-000-0000', '00-0000-0000', 'DFZSDF', 's@a.com', null, '2016-11-22', 'N', '3', '23', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('67', 'DFDFG', 'RDGREG', 'RGDRG', 'RGR', '1', '1991-07-26', '00-000-0000', '00-0000-0000', 'RTESRT', 's@a.com', null, '2016-11-22', 'N', '2', '18', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('68', 'GDSRG', 'DRGSDRG', 'DRGDRG', 'DRGDRG', '1', '1990-06-14', '00-000-0000', '00-0000-0000', 'FRGDSRG', 's@a.com', null, '2016-11-22', 'N', '2', '18', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('69', 'RF', '', 'EWR', '', '1', '1995-07-07', '00-000-0000', '00-0000-0000', 'RTERT', 's@a.com', null, '2016-11-22', 'N', '6', '50', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('70', 'EFRE', 'EWR', 'EWR', '', '1', '1980-10-22', '00-000-0000', '00-0000-0000', 'SDFSE', 's@a.com', null, '2016-11-22', 'N', '1', '1', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('71', 'DFGDFG', '', 'DFGDF', '', '1', '1990-06-13', '00-000-0000', '00-0000-0000', 'DRGDR', 's@a.com', null, '2016-11-22', 'N', '1', '1', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('72', 'PRUEBA55', 'PRUEBA55', 'PRUEBA55', 'PRUEBA55', '1', '1990-06-21', '00-000-0000', '00-0000-0000', 'CDVFDS', 's@a.com', null, '2016-11-22', 'N', '1', '1', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('73', 'ESRTF', '', 'EWR', '', '1', '1990-02-08', '00-000-0000', '00-0000-0000', 'SRT', 's@a.com', null, '2016-11-22', 'N', '3', '23', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('74', 'PRUEBA55', 'PRUEBA55', 'PRUEBA55', 'PRUEBA55', '1751241447', '1980-06-26', '00-000-0000', '00-0000-0000', 'FDG', 's@a.com', null, '2016-11-22', 'N', '2', '16', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('75', 'LIDER1', 'LIDER1', 'LIDER1', 'LIDER1', '1753125911', '1990-06-21', '00-000-0000', '00-0000-0000', 'AAAA', 's@a.com', null, '2016-11-23', 'N', '1', '3', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('76', 'FDWEF', '', 'EWFEWF', '', '1725411522', '1994-06-23', '00-000-0000', '00-0000-0000', 'ESFWEF', 's@a.com', null, '2016-11-23', 'N', '2', '16', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('77', 'LIDER1', 'LIDER1', 'LIDER1', 'LIDER1', '1750384735', '1990-02-21', '00-000-0000', '00-0000-0000', 'DAED', 's@a.com', null, '2016-11-23', 'N', '1', '1', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('78', 'LIDER2', 'LIDER2', 'LIDER2', 'LIDER2', '1727521989', '1980-06-25', '00-000-0000', '00-0000-0000', 'EFSRF', 's@a.com', null, '2016-11-23', 'N', '1', '1', null, '3', '16', '0');
+INSERT INTO `tab_cliente` VALUES ('79', 'ASESOR1', 'ASESOR1', 'ASESOR1', 'ASESOR1', '1726095688', '1990-01-31', '00-000-0000', '00-0000-0000', 'ASESOR1', 'a@a.com', '1', '2016-11-23', 'N', '5', '37', null, '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('80', 'ASESOR2', 'ASESOR2', 'ASESOR2', 'ASESOR2', '1312994997', '1988-12-27', '00-000-0000', '00-0000-0000', 'ASESOR2', 'a@a.com', '2', '2016-11-23', 'N', '3', '23', '79', '2', '78', '1');
+INSERT INTO `tab_cliente` VALUES ('81', 'ASESOR3', 'ASESOR3', 'ASESOR3', 'ASESOR3', '1750343111', '1997-01-01', '00-000-0000', '00-0000-0000', 'ASESOR3', '', '2', '2016-11-23', 'N', '1', '1', null, '2', '16', '1');
+INSERT INTO `tab_cliente` VALUES ('82', 'ASESOR4', 'ASESOR4', 'ASESOR4', 'ASESOR4', '1726189762', '1990-06-21', '00-000-0000', '00-0000-0000', 'ASESOR4', '', '2', '2016-11-23', 'N', '1', '1', null, '2', '16', '1');
 
 -- ----------------------------
 -- Table structure for tab_lider
@@ -485,6 +517,43 @@ CREATE TABLE `tab_lider` (
 -- ----------------------------
 -- Records of tab_lider
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for tab_lider_generacion
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_lider_generacion`;
+CREATE TABLE `tab_lider_generacion` (
+  `id_lider_generacion` int(11) NOT NULL AUTO_INCREMENT,
+  `lider_1G` int(11) DEFAULT NULL COMMENT 'Lider de primera generacion',
+  `lider_2G` int(11) DEFAULT NULL COMMENT 'Lider de 2da Generacion',
+  `lider_3G` int(11) DEFAULT NULL COMMENT 'Lider 3era Generacion',
+  `lider_4G` int(11) DEFAULT NULL COMMENT 'Lider de 4ta Generacion',
+  `lider_5G` int(11) DEFAULT NULL COMMENT 'Lider de 5ta Generacion',
+  `id_cliente_lider` int(11) NOT NULL,
+  PRIMARY KEY (`id_lider_generacion`),
+  KEY `fk_lider_1G` (`lider_1G`),
+  KEY `fk_lider_2G` (`lider_2G`),
+  KEY `fk_lider_3G` (`lider_3G`),
+  KEY `fk_lider_4G` (`lider_4G`),
+  KEY `fk_lider_5G` (`lider_5G`),
+  CONSTRAINT `fk_lider_1G` FOREIGN KEY (`lider_1G`) REFERENCES `tab_cliente` (`id_cliente`),
+  CONSTRAINT `fk_lider_2G` FOREIGN KEY (`lider_2G`) REFERENCES `tab_cliente` (`id_cliente`),
+  CONSTRAINT `fk_lider_3G` FOREIGN KEY (`lider_3G`) REFERENCES `tab_cliente` (`id_cliente`),
+  CONSTRAINT `fk_lider_4G` FOREIGN KEY (`lider_4G`) REFERENCES `tab_cliente` (`id_cliente`),
+  CONSTRAINT `fk_lider_5G` FOREIGN KEY (`lider_5G`) REFERENCES `tab_cliente` (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tab_lider_generacion
+-- ----------------------------
+INSERT INTO `tab_lider_generacion` VALUES ('1', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('2', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('3', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('4', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('5', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('6', '16', null, null, null, null, '0');
+INSERT INTO `tab_lider_generacion` VALUES ('10', '16', null, null, null, null, '77');
+INSERT INTO `tab_lider_generacion` VALUES ('11', '16', null, null, null, null, '78');
 
 -- ----------------------------
 -- Table structure for tab_nivel_lider
@@ -658,7 +727,7 @@ CREATE TABLE `tab_referido` (
   PRIMARY KEY (`id_referido`),
   KEY `fk_id_cliente_referido` (`fk_id_cliente`),
   CONSTRAINT `fk_id_cliente_referido` FOREIGN KEY (`fk_id_cliente`) REFERENCES `tab_cliente` (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tab_referido
@@ -683,6 +752,8 @@ INSERT INTO `tab_referido` VALUES ('18', '2016-11-17', '1669613921', '31');
 INSERT INTO `tab_referido` VALUES ('19', '2016-11-17', '1669613925', '31');
 INSERT INTO `tab_referido` VALUES ('21', '2016-11-17', '1669613934', '31');
 INSERT INTO `tab_referido` VALUES ('22', '2016-11-18', '6666666', '31');
+INSERT INTO `tab_referido` VALUES ('24', '2016-11-21', '1728682608', '61');
+INSERT INTO `tab_referido` VALUES ('25', '2016-11-23', '1312994997', '79');
 
 -- ----------------------------
 -- Table structure for tab_tipo_documento
