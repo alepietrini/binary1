@@ -121,10 +121,18 @@ class RegistroLider extends MX_Controller
         echo json_encode($datos);
     }
 
+    //Buscar Id de Cliente para inyectar en la tabla de Lideres
+    public function buscarIdCliente(){
+        $nroDocumentoLider= trim($this->input->post('nroDocumentoLider'));
+        $datos = $this->load->registrolider_model->buscarIdCliente($nroDocumentoLider);
+        echo json_encode($datos);
+    }
+
     //Metodo para ingresar a los lideres segun sus generaciones
     public function ingresarTablaLiderGeneracion(){
         $idLider = trim($this->input->post('idLider'));
-        $datos = $this->load->registrolider_model->ingresarTablaLiderGeneracion($idLider);
+        $idCliente = trim($this->input->post('id_cliente'));
+        $datos = $this->load->registrolider_model->ingresarTablaLiderGeneracion($idLider,$idCliente);
         echo json_encode($datos);
 
     }

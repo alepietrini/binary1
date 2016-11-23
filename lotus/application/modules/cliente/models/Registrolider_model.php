@@ -205,14 +205,38 @@ class Registrolider_model extends CI_Model
         return $id_tipo_documento;
     }
 
+    //Buscar Id de Cliente para inyectar en la tabla de Lideres
+    public function buscarIdCliente($nroDocumentoLider){
+
+        $this->db->select('id_cliente');
+        $this->db->from('tab_cliente');
+        $this->db->where('nro_documento='.$nroDocumentoLider);
+
+        $query = $this->db->get();
+        $ds = $query->row_array();
+
+        if (count($ds)>0){
+
+            $id_cliente = $ds['id_cliente'];
+        }
+        else{
+
+            $id_cliente = null;
+        }
+
+        return $id_cliente;
+
+    }
+
     //Metodo para ingresar a los lideres segun sus generaciones
-    public function ingresarTablaLiderGeneracion($idLider){
+    public function ingresarTablaLiderGeneracion($idLider,$idCliente){
 
         $this->db->insert('tab_lider_generacion', array('lider_1G' => $idLider,
             'lider_2G' => NULL,
             'lider_3G' => NULL,
             'lider_4G' => NULL,
-            'lider_5G' => NULL
+            'lider_5G' => NULL,
+            'id_cliente_lider' => $idCliente
             ));
 
         return true;

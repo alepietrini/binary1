@@ -735,7 +735,7 @@
                             //
                         }
                         else{
-                            var text = 'El número de cédula ingresado ya existe';
+                            var text = 'El número de documento ingresado ya existe';
                             $.notific8(text, params);
                         }
 
@@ -1006,7 +1006,7 @@
                          data: {pNombreLider:getpNombreLider(), sNombreLider:getsNombreLider(), 
                             apellidoPLider:getApellidoPLider(), apellidoMLider:getApellidoMLider(), 
                             fechaNacimientoLider:getFechaNaciomientoLider(), 
-                            tipoDocumentoLider:getTipoDocumentoLider(),nroDocumentoLider:getIdTipoDocumento(), 
+                            tipoDocumentoLider:getIdTipoDocumento(),nroDocumentoLider:getNroDocumentoLider(), 
                             tlfFijoLider:getTlfFijoLider(), tlfCelularLider:getTlfCelularLider(), 
                             idProvincia:getProvinciaLider(),idCiudad:getCiudadLider(), 
                             direccion:getDireccionLider(), email:getEmailLider(), referido:getIdReferido(), lider:superLider, fechaActual:getFechaActual()},
@@ -1022,7 +1022,8 @@
                                 }
                                 else{
                                     if (getCodLiderLider() == ''){
-                                        ingresarTablaLiderGeneracion(superLider);
+                                        buscarIdCliente(superLider);
+                                        
                                     }
                                 } 
                             }
@@ -1205,6 +1206,51 @@
         }
     }
 
+    //Buscar Id de Cliente para inyectar en la tabla de referidos
+    function buscarIdCliente(idLider){
+
+        $.isLoading({
+            text: "Cargando",
+            position: "overlay"
+        });
+
+        var params = {                
+            onInit: function(data) {
+            },
+            onCreate: function(notification, data) {
+            },
+            onClose: function(notification, data) {
+            }
+        };
+
+        params.heading = 'Notificación';
+        params.theme = 'teal';
+        params.life = '2000';
+
+        $.ajax({
+            type: 'POST',
+            async:false,
+            dataType: 'json',
+            data: {nroDocumentoLider: getNroDocumentoLider()},
+            url: '<?php echo base_url(); ?>index.php/cliente/registroLider/buscarIdCliente',
+            success: function (data) 
+            {     
+                $.isLoading("hide");
+                if ((data != null) && (data != undefined) && (data != '')){
+                    setIdCliente(data); //Asigno el valor Id_cliente 
+                    ingresarTablaLiderGeneracion(idLider);
+
+                } 
+                else{
+                    //$.isLoading("hide");
+                    var text = 'Se presento un problema al registrar al asesor';
+                    $.notific8(text, params);
+                }
+                
+            }
+        }); 
+    }
+
     //Metodo para ingresar a los lideres segun sus generaciones
     function ingresarTablaLiderGeneracion(idLider){
 
@@ -1232,7 +1278,7 @@
             type: 'POST',
             async:false,
             dataType: 'json',
-            data: {idLider:idLider},
+            data: {idLider:idLider, id_cliente:getIdCliente()},
             url: '<?php echo base_url(); ?>index.php/cliente/registroLider/ingresarTablaLiderGeneracion',
             success: function (data) 
             {     
@@ -1255,7 +1301,7 @@
     }
 
    //Metodo parea buscar si el lider pertenece a la cuarta generacion
-   function buscarLider4taGeneracion(idLider){
+   function buscarLider1raGeneracion(idLider){
 
             $.isLoading({
             text: "Cargando",

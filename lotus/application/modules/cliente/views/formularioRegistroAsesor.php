@@ -222,7 +222,7 @@
                             /></td>
                         <td></td>
                         <td><input id="itlfFijo" class="form-control inputRegistro" type="text" 
-                            name="itlfFijo" maxlength="9"></td>
+                            name="itlfFijo" maxlength="12"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -237,7 +237,7 @@
                     <tr>
                         <td></td>
                         <td><input id="itlfCelular" class="form-control inputRegistro" type="text" 
-                            name="itlfCelular" maxlength="10"></td>
+                            name="itlfCelular" maxlength="12"></td>
                         <td></td>
                         <td><input id="ipaisAsesor" class="form-control inputRegistro" type="text" 
                             name="ipaisAsesor" maxlength="10" value="Ecuador" disabled="disabled"></td>
@@ -335,27 +335,27 @@
 
         //Primer Nombre
         function getpNombreAsesor(){
-            return $('#ipNombreAsesor').val();
+            return $('#ipNombreAsesor').val().toUpperCase();
         }
         //Segundo Nombre
         function getsNombreAsesor(){
-            return $('#isNombreAsesor').val();
+            return $('#isNombreAsesor').val().toUpperCase();;
         }
         //Apelliodo Paterno
         function getApellidoP(){
-            return $('#ipApellidoAsesor').val();
+            return $('#ipApellidoAsesor').val().toUpperCase();
         } 
         //Apelliodo Materno
         function getApellidoM(){
-            return $('#isApellidoAsesor').val();
+            return $('#isApellidoAsesor').val().toUpperCase();
         }
         //Fecha de nacimiento
         function getFechaNaciomientoAsesor(){
-            return $('#ifNacimientoAsesor').val();
+            return $('#ifNacimientoAsesor').val().toUpperCase();
         }
         //Tipo de Documento
         function getTipoDocumento(){
-            return $("#stipoDocumento option:selected" ).val();
+            return $("#stipoDocumento option:selected" ).val()
         }
         //Cedula
         function getNroDocumentoAsesor(){
@@ -383,7 +383,7 @@
         }
         //Direccion
         function getDireccion(){
-            return $('#iDireccion').val();
+            return $('#iDireccion').val().toUpperCase();
         }
         //E-mail
         function getEmailAsesor(){
@@ -527,7 +527,7 @@
 
                 $('#formRegistroB')[0].reset();
 
-                $('#modalregistroAsesoraB').modal('hide');
+                $('#modalregistroAsesorB').modal('hide');
             })
 
 
@@ -865,7 +865,7 @@
                             var text = 'Se presento un problema al registrar al asesor';
                              // show notification
                             $.notific8(text, params);
-                            $('#modalregistroAsesoraB').modal('hide');
+                            $('#modalregistroAsesorB').modal('hide');
                         }
                         
                        
@@ -1257,7 +1257,7 @@
                         var text = 'Se presento un problema al registrar al asesor';
                         // show notification
                         $.notific8(text, params);
-                        $('#modalregistroAsesoraB').modal('hide');
+                        $('#modalregistroAsesorB').modal('hide');
                     }
                     
                     
@@ -1305,7 +1305,7 @@
                         
                         var text = 'Se presento un problema al registrar al asesor';
                         $.notific8(text, params);
-                        $('#modalregistroAsesoraB').modal('hide');
+                        $('#modalregistroAsesorB').modal('hide');
                     }
                    
                     
@@ -1361,6 +1361,9 @@
                     $.isLoading("hide");
                    if (data == true){
                         var text = 'Asesor Registrado correctamente';
+
+                        $('#formRegistroB').attr('action','<?php echo base_url(); ?>index.php/cliente/registroLider/mostrarIngresoSistema');
+                        $('#formRegistroB').submit();
                    }
                    else
                    {
@@ -1368,7 +1371,7 @@
                    }
 
                    $.notific8(text, params);
-                   $('#modalregistroAsesoraB').modal('hide');
+                   $('#modalregistroAsesorB').modal('hide');
                     
                 }
             });

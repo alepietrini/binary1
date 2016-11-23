@@ -165,7 +165,7 @@
                         </div>
                         <div id="button" style="max-width: 290px;">
                             <button id="enviar" class="btn btn-sm btn-success" type="submit"">Entrar</button>
-                            <button id="bRegistroAsesor" class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#modalregistroAsesoraB" onclick="inicializarCampos()">Registrate como Asesora de Belleza</button>
+                            <button id="bRegistroAsesor" class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#modalregistroAsesorB" onclick="inicializarCampos()">Registrate como Asesor de Belleza</button>
                         </div>
                     </form>
                 
@@ -179,13 +179,13 @@
 
         <!--Registro de Belleza-->
         <form id="formRegistroB">
-            <div class="modal fade" id="modalregistroAsesoraB" tabindex="-1" role="dialog" 
-            aria-labelledby="registroAsesoraBModalLabel">
+            <div class="modal fade" id="modalregistroAsesorB" tabindex="-1" role="dialog" 
+            aria-labelledby="registroAsesorBModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="registroAsesoraBModalLabel">Registro Asesora de Belleza (Hombres y Mujeres mayores de 18 años)</h4>
+                        <h4 class="modal-title" id="registroAsesorBModalLabel">Registro Asesor de Belleza (Hombres y Mujeres mayores de 18 años)</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -440,19 +440,19 @@
 
             //Primer Nombre
             function getpNombreAsesor(){
-                return $('#ipNombreAsesor').val();
+                return $('#ipNombreAsesor').val().toUpperCase();
             }
             //Segundo Nombre
             function getsNombreAsesor(){
-                return $('#isNombreAsesor').val();
+                return $('#isNombreAsesor').val().toUpperCase();
             }
             //Apelliodo Paterno
             function getApellidoP(){
-                return $('#ipApellidoAsesor').val();
+                return $('#ipApellidoAsesor').val().toUpperCase();
             } 
             //Apelliodo Materno
             function getApellidoM(){
-                return $('#isApellidoAsesor').val();
+                return $('#isApellidoAsesor').val().toUpperCase();
             }
             //Fecha de nacimiento
             function getFechaNaciomientoAsesor(){
@@ -488,7 +488,7 @@
             }
             //Direccion
             function getDireccion(){
-                return $('#iDireccion').val();
+                return $('#iDireccion').val().toUpperCase();
             }
             //E-mail
             function getEmailAsesor(){
@@ -821,7 +821,7 @@
                                 var text = 'Se presento un problema al registrar al asesor';
                                  // show notification
                                 $.notific8(text, params);
-                                $('#modalregistroAsesoraB').modal('hide');
+                                $('#modalregistroAsesorB').modal('hide');
                             }
                             
                            
@@ -1213,7 +1213,7 @@
                             var text = 'Se presento un problema al registrar al asesor';
                             // show notification
                             $.notific8(text, params);
-                            $('#modalregistroAsesoraB').modal('hide');
+                            $('#modalregistroAsesorB').modal('hide');
                         }
                         
                         
@@ -1261,7 +1261,7 @@
                             
                             var text = 'Se presento un problema al registrar al asesor';
                             $.notific8(text, params);
-                            $('#modalregistroAsesoraB').modal('hide');
+                            $('#modalregistroAsesorB').modal('hide');
                         }
                        
                         
@@ -1324,7 +1324,7 @@
                        }
 
                        $.notific8(text, params);
-                       $('#modalregistroAsesoraB').modal('hide');
+                       $('#modalregistroAsesorB').modal('hide');
                         
                     }
                 });
@@ -1556,7 +1556,7 @@
 
                     $('#formRegistroB')[0].reset();
 
-                    $('#modalregistroAsesoraB').modal('hide');
+                    $('#modalregistroAsesorB').modal('hide');
                 })
 
 
